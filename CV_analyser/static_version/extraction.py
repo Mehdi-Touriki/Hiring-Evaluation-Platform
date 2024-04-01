@@ -1,4 +1,6 @@
 import spacy
+from pypdf import PdfReader
+
 SKILLS = [
     "web scraper", "software testing", "project management", "communication skills", "research assistant",
     "data analysis", "technical design", "problem solving", "scraper api", "assembly", "bash", "c", "c++", "c#",
@@ -88,7 +90,6 @@ class Resume:
 
     def find_education(self, resume_text: str) -> list[str]:
         """
-
         :param resume_text:
         :return:
         """
@@ -105,3 +106,16 @@ class Resume:
             if token.like_num:
                 phone = token
         return phone
+
+
+def parse_pdf(path: str):
+    """
+    Une fonction pour convertir un cv au format pdf en string
+    :param path:
+    :return:
+    """
+    reader = PdfReader(path)
+    text = ""
+    for page in reader.pages:
+        text += page.extract_text()
+    return text
