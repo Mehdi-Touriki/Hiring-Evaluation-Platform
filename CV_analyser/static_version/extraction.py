@@ -1,4 +1,5 @@
 import spacy
+import re
 from pypdf import PdfReader
 
 SKILLS = [
@@ -73,8 +74,13 @@ class Resume:
         return email
 
     def find_experience(self, resume_text: str) -> int:
-        # regular expression
-        pass
+        # get experience paragraph
+        exp_pattern = r"(?s)(?<=experience).*(skills|education|achievements|activities)"
+        matches = re.findall(exp_pattern, resume_text,re.I)
+        if len(matches) == 0:
+            exp_pattern = r"(?s)(?<=experience).*"
+            matches = re.findall(exp_pattern, resume_text)
+        return find_total_months(matches)
 
     def find_skills(self, resume_text: str) -> list[str]:
         """
@@ -119,3 +125,13 @@ def parse_pdf(path: str):
     for page in reader.pages:
         text += page.extract_text()
     return text
+
+
+def find_total_months(exp_list: list[str]) -> int:
+    """
+    Une fonction qui trouve la duree totale dans un texte
+    :param exp_list:
+    :return:
+    """
+    for line in exp_list:
+
