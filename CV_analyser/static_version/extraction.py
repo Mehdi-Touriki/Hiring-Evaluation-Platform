@@ -28,7 +28,7 @@ EDUCATION = [
 
 class Resume:
     def __init__(self):
-        self._nlp = spacy.load("en_core_web_lg")
+        self._nlp = spacy.load("en_core_web_sm")
         self.fullname = ""
         self.email = ""
         self.phone_number = ""
