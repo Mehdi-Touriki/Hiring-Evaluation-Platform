@@ -1,5 +1,4 @@
 from datetime import datetime
-
 import spacy
 import re
 from pypdf import PdfReader
@@ -18,12 +17,131 @@ SKILLS = [
     "xamarin", "collaborate", "spring", "hibernate", "jdbc", "postgis", "machine learning", "deep learning",
     "maven", "apache spark", "gradle", "scrum", "agile", "dom manipulation", "flux", "redux", "restful api",
     "next.js", "blockchain", "typescript", "kanban", "code-splitting", "chunking", "lazy loading", "regression testing",
-    "django", "kivy", "flask", "cherrypy", "pyqt", "flutter"
+    "django", "kivy", "flask", "cherrypy", "pyqt", "flutter", "opengl", "mathematica", "asp",
 ]
 
 EDUCATION = [
     "phd", "ma", "mcom", "msc", "ba", "bachelor", "bcs", "bcom", "undergraduate", "graduate"
 ]
+
+
+def find_experience_paragraph(resume_text: str):
+    exp_pattern = r"(?s)experience(?!d)(.*?)(?:Skills|Education|Achievements|activities)"
+    matches = re.findall(exp_pattern, resume_text, re.I)
+    if len(matches) == 0:
+        exp_pattern = r"(?s)(?<=experience)(?!d).*"
+        matches = re.findall(exp_pattern, resume_text)
+    if len(matches) == 0:
+        return [""]
+    matches[0] = matches[0].replace("\n", " ")
+    return matches
+
+
+def parse_pdf(path: str) -> str:
+    """
+    Une fonction pour convertir un CV au format pdf en string
+    :param path: le chemin du fichier pdf
+    :return: le contenu du fichier pdf
+    """
+    reader = PdfReader(path)
+    text = ""
+    for page in reader.pages:
+        text += page.extract_text()
+    text_utf8 = text.encode('utf-8')
+    text_utf8_string = text_utf8.decode('utf-8')
+    return text_utf8_string
+
+
+def calc_total_months(date: dict) -> int:
+    """
+    Une fonction qui calcule la durée en mois entre les dates entrées comme dictionnaire :param date: elle peut avoir
+    3 formes. Exemples:{"fmonth":"May","fyear":"2001","lmonth":"sept","lyear":"2004"},{"fmonth":"sept",
+    "lmonth":"oct"};{"fyear":"2004","lyear":"2005"}
+
+    :return: la durée en mois entre ces deux dates
+    """
+    current_year = datetime.now().year
+    current_month = datetime.now().month
+    months_numbers = {
+        'jan': '01',
+        'feb': '02',
+        'mar': '03',
+        'apr': '04',
+        'may': '05',
+        'jun': '06',
+        'jul': '07',
+        'aug': '08',
+        'sep': '09',
+        'oct': '10',
+        'nov': '11',
+        'dec': '12'
+    }
+    total = 0
+    try:
+        if len(date) == 4:
+            if date['lmonth'] == "present":
+                total += 12 - int(months_numbers[date['fmonth'][:3]]) + 12 * (
+                            current_year - int(date['fyear']) - 1) + current_month
+            else:
+                total += 12 - int(months_numbers[date['fmonth'][:3]]) + 12 * (
+                        int(date['lyear']) - int(date['fyear']) - 1) + int(
+                    months_numbers[date['lmonth'][:3]])
+        elif len(date) == 2:
+            if 'fyear' in date and 'lyear' in date:
+                if date['lyear'] == "present":
+                    date['lyear'] = "2024"
+                total += 12 * (int(date['lyear']) - int(date['fyear']))
+            elif 'fmonth' in date and 'lmonth' in date:
+                if date['lmonth'] == "present":
+                    total += 12 - int(months_numbers[date['fmonth'][:3]])
+                else:
+                    total += int(months_numbers[date['lmonth'][:3]]) - int(months_numbers[date['fmonth'][:3]])
+    except KeyError:
+        print("There has been an exception while calculating dates in experience paragraph.")
+        return 0
+    return total
+
+
+def find_total_months(exp_list: list[str]) -> int:
+    """
+    Une fonction qui trouve la duree totale dans une liste d'experiences
+    :param exp_list:
+    :return:
+    """
+    dates = []
+    for line in exp_list:
+        line.lower()
+        # dates in the form 2015 - 2020
+        experience = re.search(
+            r"(?P<fyear>\d{4})\s*(\s|-|to)\s*(?P<lyear>\d{4}|present|date|now|current)",
+            line,
+        )
+        if experience:
+            d = experience.groupdict()
+            # exemple d = {"fyear":"2004","lyear":"2005"}
+            dates.append(d)
+            continue
+        # dates in the form (sept - oct [2012])
+        experience = re.search(
+            r"(?s)\((?P<fmonth>\w+)\s*(-|to)\s*(?P<lmonth>\w+|present|date|now|current).*\)",
+            line,
+        )
+        if experience:
+            d = experience.groupdict()
+            # exemple d = {"fmonth":"sept","lmonth":"oct"}
+            dates.append(d)
+            continue
+        # dates in the form May 2001 to sept 2004
+        experience = re.search(
+            r"(?P<fmonth>\w+)\s*(?P<fyear>\d+)\s*(-|to)\s*((?P<lmonth>\w+)\s*(?P<lyear>\d+)|present|date|now|current)",
+            line,
+        )
+        if experience:
+            d = experience.groupdict()
+            # exemple d = {"fmonth":"May","fyear":"2001","lmonth":"sept","lyear":"2004"}
+            dates.append(d)
+            continue
+    return sum([calc_total_months(date) for date in dates])
 
 
 class Resume:
@@ -77,12 +195,7 @@ class Resume:
 
     def find_experience(self, resume_text: str) -> int:
         # get experience paragraph
-        exp_pattern = r"(?s)(?<=experience).*(skills|education|achievements|activities)"
-        matches = re.findall(exp_pattern, resume_text, re.I)
-        if len(matches) == 0:
-            exp_pattern = r"(?s)(?<=experience).*"
-            matches = re.findall(exp_pattern, resume_text)
-        matches = matches[0].split("\n")
+        matches = find_experience_paragraph(resume_text)
         return find_total_months(matches)
 
     def find_skills(self, resume_text: str) -> list[str]:
@@ -93,7 +206,7 @@ class Resume:
         """
         skills = []
         for skill in SKILLS:
-            if skill in resume_text:
+            if skill in resume_text.lower():
                 skills.append(skill)
         return skills
 
@@ -104,7 +217,7 @@ class Resume:
         """
         education = []
         for edu in EDUCATION:
-            if edu in resume_text:
+            if edu in resume_text.lower():
                 education.append(edu)
         return education
 
@@ -115,96 +228,3 @@ class Resume:
             if token.like_num:
                 phone = token
         return phone
-
-
-def parse_pdf(path: str):
-    """
-    Une fonction pour convertir un cv au format pdf en string
-    :param path:
-    :return:
-    """
-    reader = PdfReader(path)
-    text = ""
-    for page in reader.pages:
-        text += page.extract_text()
-    return text
-
-
-def calc_total_months(date: dict):
-    current_year = datetime.now().year
-    current_month = datetime.now().month
-    months_numbers = {
-        'jan': '01',
-        'feb': '02',
-        'mar': '03',
-        'apr': '04',
-        'may': '05',
-        'jun': '06',
-        'jul': '07',
-        'aug': '08',
-        'sep': '09',
-        'oct': '10',
-        'nov': '11',
-        'dec': '12'
-    }
-    total = 0
-    if len(date) == 4:
-        if date['lmonth'] == "present":
-            total += 12 - int(months_numbers[date['fmonth'][:3]]) + 12 * (current_year - int(date['fyear']) - 1) + current_month
-        else:
-            total += 12 - int(months_numbers[date['fmonth'][:3]]) + 12 * (
-                        int(date['lyear']) - int(date['fyear']) - 1) + int(
-                months_numbers[date['lmonth'][:3]])
-    elif len(date) == 2:
-        if 'fyear' in date and 'lyear' in date:
-            if date['lyear'] == "present":
-                date['lyear'] = "2024"
-            total += 12 * (int(date['lyear']) - int(date['fyear']))
-        elif 'fmonth' in date and 'lmonth' in date:
-            if date['lmonth'] == "present":
-                total += 12 - int(months_numbers[date['fmonth'][:3]])
-            else:
-                total += int(months_numbers[date['lmonth'][:3]]) - int(months_numbers[date['fmonth'][:3]])
-    return total
-
-
-def find_total_months(exp_list: list[str]) -> int:
-    """
-    Une fonction qui trouve la duree totale dans une liste d'experiences
-    :param exp_list:
-    :return:
-    """
-    dates = []
-    for line in exp_list:
-        line.lower()
-        # dates in the form 2015 - 2020
-        experience = re.search(
-            r"(?P<fyear>\d{4})\s*(\s|-|to)\s*(?P<lyear>\d{4}|present|date|now)",
-            line,
-        )
-        if experience:
-            d = experience.groupdict()
-            # exemple d = {"fyear":"2004","lyear":"2005"}
-            dates.append(d)
-            continue
-        # dates in the form (sept - oct [2012])
-        experience = re.search(
-            r"(?s)\((?P<fmonth>\w+)\s*(-|to)\s*(?P<lmonth>\w+|present|date|now).*\)",
-            line,
-        )
-        if experience:
-            d = experience.groupdict()
-            # exemple d = {"fmonth":"sept","lmonth":"oct"}
-            dates.append(d)
-            continue
-        # dates in the form May 2001 to sept 2004
-        experience = re.search(
-            r"(?P<fmonth>\w+)\s*(?P<fyear>\d+)\s*(-|to)\s*((?P<lmonth>\w+)\s*(?P<lyear>\d+)|present|date|now)",
-            line,
-        )
-        if experience:
-            d = experience.groupdict()
-            # exemple d = {"fmonth":"May","fyear":"2001","lmonth":"sept","lyear":"2004"}
-            dates.append(d)
-            continue
-        return sum([calc_total_months(date) for date in dates])
