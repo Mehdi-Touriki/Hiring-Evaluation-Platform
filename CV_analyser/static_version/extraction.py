@@ -33,9 +33,8 @@ def find_experience_paragraph(resume_text: str):
         matches = re.findall(exp_pattern, resume_text, re.I)
     if len(matches) == 0:
         return [""]
-    print(matches)
     matches[0] = matches[0].replace("\n", " ")
-    print(matches)
+    
     return matches
 
 
@@ -82,6 +81,7 @@ def calc_total_months(date: dict) -> int:
     print(date)
     try:
         if len(date) == 4:
+            
             if date['fmonth'].isnumeric():
                 if date['lmonth'] in ["present", "current", "now", "date"]:
                     total += 12 - int(date['fmonth']) + 12 * (
@@ -121,7 +121,8 @@ def find_total_months(exp_list: list[str]) -> int:
     :return:
     """
     dates = []
-    for line in exp_list:
+    lines=exp_list[0].split(".")
+    for line in lines:
         line = line.lower()
         # dates in the form 2015 - 2020
         experience = re.search(
@@ -152,8 +153,15 @@ def find_total_months(exp_list: list[str]) -> int:
             d = experience.groupdict()
             # exemple d = {"fmonth":"May","fyear":"2001","lmonth":"sept","lyear":"2004"}
             dates.append(d)
+            continue 
+    results=[]
+    for date in dates:
+        total=calc_total_months(date)
+        if total>1200 or total<0 :
             continue
-    return sum([calc_total_months(date) for date in dates])
+        results.append(calc_total_months(date))
+    
+    return sum(results)
 
 
 
