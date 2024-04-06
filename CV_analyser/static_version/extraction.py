@@ -26,14 +26,16 @@ EDUCATION = [
 
 
 def find_experience_paragraph(resume_text: str):
-    exp_pattern = r"(?s)experience(?!d)(.*?)(?:Skills|Education|Achievements|activities)"
+    exp_pattern = r"(?s)(?:experience|work history)(?!d)(.*?)(?:Skills|Education|Achievements|activities)"
     matches = re.findall(exp_pattern, resume_text, re.I)
     if len(matches) == 0:
-        exp_pattern = r"(?s)(?<=experience)(?!d).*"
-        matches = re.findall(exp_pattern, resume_text)
+        exp_pattern = r"(?s)(?:experience|work history)(?!d).*"
+        matches = re.findall(exp_pattern, resume_text, re.I)
     if len(matches) == 0:
         return [""]
+    print(matches)
     matches[0] = matches[0].replace("\n", " ")
+    print(matches)
     return matches
 
 
@@ -77,18 +79,28 @@ def calc_total_months(date: dict) -> int:
         'dec': '12'
     }
     total = 0
+    print(date)
     try:
         if len(date) == 4:
-            if date['lmonth'] == "present":
-                total += 12 - int(months_numbers[date['fmonth'][:3]]) + 12 * (
+            if date['fmonth'].isnumeric():
+                if date['lmonth'] in ["present", "current", "now", "date"]:
+                    total += 12 - int(date['fmonth']) + 12 * (
                             current_year - int(date['fyear']) - 1) + current_month
+                else:
+                    total += 12 - int(date['fmonth']) + 12 * (
+                            int(date['lyear']) - int(date['fyear']) - 1) + int(
+                        date['lmonth'])
             else:
-                total += 12 - int(months_numbers[date['fmonth'][:3]]) + 12 * (
-                        int(date['lyear']) - int(date['fyear']) - 1) + int(
-                    months_numbers[date['lmonth'][:3]])
+                if date['lmonth'] in ["present", "current", "now", "date"]:
+                    total += 12 - int(months_numbers[date['fmonth'][:3]]) + 12 * (
+                            current_year - int(date['fyear']) - 1) + current_month
+                else:
+                    total += 12 - int(months_numbers[date['fmonth'][:3]]) + 12 * (
+                            int(date['lyear']) - int(date['fyear']) - 1) + int(
+                        months_numbers[date['lmonth'][:3]])
         elif len(date) == 2:
             if 'fyear' in date and 'lyear' in date:
-                if date['lyear'] == "present":
+                if date['lyear'] in ["present", "current", "now", "date"]:
                     date['lyear'] = "2024"
                 total += 12 * (int(date['lyear']) - int(date['fyear']))
             elif 'fmonth' in date and 'lmonth' in date:
@@ -110,7 +122,7 @@ def find_total_months(exp_list: list[str]) -> int:
     """
     dates = []
     for line in exp_list:
-        line.lower()
+        line = line.lower()
         # dates in the form 2015 - 2020
         experience = re.search(
             r"(?P<fyear>\d{4})\s*(\s|-|to)\s*(?P<lyear>\d{4}|present|date|now|current)",
@@ -133,7 +145,7 @@ def find_total_months(exp_list: list[str]) -> int:
             continue
         # dates in the form May 2001 to sept 2004
         experience = re.search(
-            r"(?P<fmonth>\w+)\s*(?P<fyear>\d+)\s*(-|to)\s*((?P<lmonth>\w+)\s*(?P<lyear>\d+)|present|date|now|current)",
+            r"(?P<fmonth>\w+)\s*(?P<fyear>\d+)\s*/*(-|to)\s*((?P<lmonth>\w+)\s*/*(?P<lyear>\d+)|present|date|now|current)",
             line,
         )
         if experience:
@@ -142,6 +154,7 @@ def find_total_months(exp_list: list[str]) -> int:
             dates.append(d)
             continue
     return sum([calc_total_months(date) for date in dates])
+
 
 
 class Resume:
