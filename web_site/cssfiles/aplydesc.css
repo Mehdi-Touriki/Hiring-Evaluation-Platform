@@ -83,3 +83,8 @@ button[type="submit"]:hover,
     background-color: #F80;
 }
 
+.submit-btn {
+    font-size: 16px;
+    font-family: 'Rubik',sans-serif;
+}
+
