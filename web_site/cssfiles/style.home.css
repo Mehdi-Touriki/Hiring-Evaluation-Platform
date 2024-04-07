@@ -1,0 +1,43 @@
+body{
+    background-image: url("../image/hero.jpg") ;
+    background-attachment: fixed;
+    color:#fff;
+	text-align:center;
+
+}
+header>a{
+    font-size: 13pt ;
+    vertical-align:50%;
+}
+ 
+header{
+    text-align:left;
+	padding:20px;
+	background-color:#555;
+	color:#888;
+	font:36pt arial;
+	border-bottom:solid 1px #888;
+
+}
+form{
+	padding:20px;
+	padding-top:50px;
+	margin:auto;
+    margin-top: 100pt;
+	text-align:center;
+	width:500px;
+}
+a{
+	padding:14px;
+	background-color:#E60;
+	text-decoration:none;
+	color:#FFF;
+	vertical-align:middle;
+	margin-left:20px;
+    margin-right:20px;
+	border-radius:6px;
+    font-size: 20pt ;
+}
+a:hover{
+	background-color:#F80;
+}
