@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <title>Recruteur</title>
+</head>
+
+<body onload='slider()'>
+  <div class="banner">
+    <div class="slider">
+        <img src="Rec2.webp" id="slideImg">
+
+    </div>
+    <div class="overlay">
+        <div class="content">
+            <h1>Embrace The Power Of AI In Recrutment</h1>
+            <div>
+                <a href="formulaire.html">Post Job</a>
+            </div>
+        </div>
+    </div>
+   
+  </div>
+  <script>
+    var slideImg=document.getElementById("slideImg");
+    var images=new Array(
+        "Rec2.webp",
+        "Rec.jpeg",
+        "image4.jpg",
+        "resume.jpg"
+
+    );
+    var len=images.length;
+    var i=0;
+    function slider(){
+        if(i>len-1){i=0;}
+        slideImg.src=images[i++];
+        setTimeout('slider()',3000);
+    }
+</script>
+</body>
+</html>
