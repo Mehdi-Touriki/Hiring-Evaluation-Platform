@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-urlpatterns = [
+urlpatterns =[
     path('', views.home),
     path('login/', views.login),
     path('recruteur/', views.home_rec),
@@ -9,6 +9,5 @@ urlpatterns = [
     path('candidat/signupcan/', views.signupcan),
     path('recruteur/formulaire', views.post_job),
     # todo: modify this path for dynamic description mr.database
-    path('candidat/description', views.description),
-    path('login/',views.home)
+    path('candidat/description', views.description)
 ]
