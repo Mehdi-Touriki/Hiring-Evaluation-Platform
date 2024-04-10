@@ -8,7 +8,7 @@ from django.views.generic import (
     UpdateView,
     CreateView
 )
-from .models import JobOffer
+from .models import Post
 
 
 def apply(request):
@@ -16,14 +16,14 @@ def apply(request):
 
 
 class JobListView(LoginRequiredMixin, ListView):
-    model = JobOffer
+    model = Post
     template_name = "jobs/jobs.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "jobs"
     ordering = ["-date_posted"]
 
 
-class JobDescriptionView(LoginRequiredMixin, ListView):
-    model = JobOffer
+class JobDescriptionView(LoginRequiredMixin, DetailView):
+    model = Post
     template_name = "jobs/description.html"
     context_object_name = "job"
 
@@ -32,13 +32,31 @@ class JobApplyView:
     pass
 
 
-class JobDeleteView(DeleteView):
-    pass
+class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.recruiter
 
 
-class JobCreateView(CreateView):
-    pass
+class JobCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
-class JobUpdateView(UpdateView):
-    pass
+class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.recruiter
