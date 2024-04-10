@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.contrib import messages
+from .form import RegisterUserFormCandidat,RegisterUserFormRecruter
 
 
 def home(request):
@@ -23,3 +25,23 @@ def login(request):
 def description(request):
     # todo: fill the context parameter
     return render(request, "candidat/description.html", context={})
+
+
+#Sign up de candidat:
+
+def register_candidat(request):
+    if request.methode== 'POST':
+        form=RegisterUserFormCandidat(request.POST)
+        if form.is_valid():
+            form.save()
+            firstname=form.cleaned_data.get('prenom')
+            lastname=form.cleaned_data.get('nom')
+            messages.success(request,f"Account created for {lastname} {firstname}!") 
+            redirect('jobs')
+        else:
+          messages.warning(request,'Something went wrong')
+          return redirect('register_candidat')
+    else: 
+        form=RegisterUserFormCandidat()
+        context={'form':form}
+        return render(request,'..\templates\candidat\signupcan.html',context)
