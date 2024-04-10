@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/cssfiles/jobscss.css">
+    <link rel="stylesheet" href="../static/cssfiles/jobscss.css">
 </head>
 <body class="bodyy">
     <div class="jobs-list-container">
@@ -19,7 +19,7 @@
         <div class="jobs">
             <div class="job">
                 <h3 class="job-title">Software Engineer</h3>
-                <a href="/description" class="details-btn">More details</a>
+                <a href="{% url job_description %}" class="details-btn">More details</a>
             </div>
             <div class="job">
                 <h3 class="job-title">Data Analyst</h3>
@@ -29,6 +29,12 @@
                 <h3 class="job-title">Web Developer</h3>
                 <a href="#" class="details-btn">More details</a>
             </div>
+            {% for job in jobs %}
+            <div class="job">
+                <h3 class="job-title">{{job.title}}</h3>
+                <a href="#" class="details-btn">More details</a>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
