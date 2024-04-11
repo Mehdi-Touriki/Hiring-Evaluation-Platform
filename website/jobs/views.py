@@ -15,14 +15,14 @@ def apply(request):
     return render(request, "")
 
 
-class JobListView(LoginRequiredMixin, ListView):
+class JobListView(ListView):
     model = Post
     template_name = "jobs/jobs.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "jobs"
-    ordering = ["-date_posted"]
+    ordering = ["-publication_date"]
 
 
-class JobDescriptionView(LoginRequiredMixin, DetailView):
+class JobDescriptionView( DetailView):
     model = Post
     template_name = "jobs/description.html"
     context_object_name = "job"
@@ -32,7 +32,7 @@ class JobApplyView:
     pass
 
 
-class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class JobDeleteView( DeleteView):
     model = Post
 
     def test_func(self):
@@ -40,18 +40,18 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == post.recruiter
 
 
-class JobCreateView(LoginRequiredMixin, CreateView):
+class JobCreateView( CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['job_title', 'description']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class JobUpdateView( UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['job_title', 'description']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
