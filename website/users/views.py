@@ -2,18 +2,19 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from .form import RegisterUserFormCandidat,RegisterUserFormRecruter
+from django.contrib.auth.forms import UserCreationForm
 
 
 def home(request):
     return render(request, "home.html")
 
 
-def signuprec(request):
-    return render(request, "recruteur/signuprec.html")
+#def signuprec(request):
+    #return render(request, "recruteur/signuprec.html")
 
 
-def signupcan(request):
-    return render(request, "candidat/signupcan.html")
+#def signupcan(request):
+    #return render(request, "candidat/signupcan.html")
 def home_can(request):
     return render(request, "candidat/jobs.html")
 def home_rec(request):
@@ -30,18 +31,33 @@ def description(request):
 #Sign up de candidat:
 
 def register_candidat(request):
-    if request.methode== 'POST':
+    if request.method== "POST":
         form=RegisterUserFormCandidat(request.POST)
         if form.is_valid():
             form.save()
             firstname=form.cleaned_data.get('prenom')
             lastname=form.cleaned_data.get('nom')
             messages.success(request,f"Account created for {lastname} {firstname}!") 
-            redirect('jobs')
+            return  redirect('jobs')
         else:
           messages.warning(request,'Something went wrong')
-          return redirect('register_candidat')
+          return redirect('register_candidat') 
+    else:
+     form=RegisterUserFormCandidat()
+     return render(request,'users/candidat/signupcan.html',{'form':form})
+    
+def register_recruter(request):
+    if request.method== 'POST':
+        form=RegisterUserFormRecruter(request.POST)
+        if form.is_valid():
+            form.save()
+            firstname=form.cleaned_data.get('prenom')
+            lastname=form.cleaned_data.get('nom')
+            messages.success(request,f"Account created for {lastname} {firstname}!") 
+            redirect('post_job')
+        else:
+          messages.warning(request,'Something went wrong')
+          return redirect('register_recruter')
     else: 
-        form=RegisterUserFormCandidat()
-        context={'form':form}
-        return render(request,'..\templates\candidat\signupcan.html',context)
+        form=RegisterUserFormRecruter()
+        return render(request,'users/recruteur/signuprec.html',{'form':form})
