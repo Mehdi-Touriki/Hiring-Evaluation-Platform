@@ -1,10 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django import forms
+from django.contrib.auth.models import User
 
 
 class RegisterUserFormRecruter(UserCreationForm):
-    # model=get_user_model()
+    model = User  # recruiter ilyass
     nom = forms.CharField()
     prenom = forms.CharField()
     entreprise = forms.CharField()
@@ -13,8 +14,8 @@ class RegisterUserFormRecruter(UserCreationForm):
     repass = forms.CharField(widget=forms.PasswordInput)
 
 
-class RegisterUserFormCandidat(forms.Form):
-    model = get_user_model()
+class RegisterUserFormCandidat(UserCreationForm):
+    model = User
     nom = forms.CharField()
     prenom = forms.CharField()
     login = forms.CharField()

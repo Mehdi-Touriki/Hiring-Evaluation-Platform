@@ -19,10 +19,10 @@ class JobListView(ListView):
     model = Post
     template_name = "jobs/jobs.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "jobs"
-    ordering = ["-publication_date"]
+    ordering = ["-publication_data"]
 
 
-class JobDescriptionView( DetailView):
+class JobDescriptionView(DetailView):
     model = Post
     template_name = "jobs/description.html"
     context_object_name = "job"
@@ -32,7 +32,7 @@ class JobApplyView:
     pass
 
 
-class JobDeleteView( DeleteView):
+class JobDeleteView(DeleteView):
     model = Post
 
     def test_func(self):
@@ -40,7 +40,7 @@ class JobDeleteView( DeleteView):
         return self.request.user == post.recruiter
 
 
-class JobCreateView( CreateView):
+class JobCreateView(CreateView):
     model = Post
     fields = ['job_title', 'description']
 
@@ -49,7 +49,7 @@ class JobCreateView( CreateView):
         return super().form_valid(form)
 
 
-class JobUpdateView( UpdateView):
+class JobUpdateView(UpdateView):
     model = Post
     fields = ['job_title', 'description']
 

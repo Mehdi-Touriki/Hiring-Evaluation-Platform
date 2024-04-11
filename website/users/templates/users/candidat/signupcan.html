@@ -10,7 +10,7 @@
 			sign up
 			
 		</header>
-		<form name="fo" method="POST" action="signupcan.html" enctype="multipart/form-data">
+		<form name="fo" method="POST" action="{% url 'register_candidat' %}" enctype="multipart/form-data">
 			{% csrf_token %}
 			
 			<div >
