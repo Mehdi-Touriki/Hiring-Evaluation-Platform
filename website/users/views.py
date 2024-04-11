@@ -1,8 +1,12 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib import messages
 from .form import RegisterUserFormCandidat, RegisterUserFormRecruter
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import auth
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse, reverse_lazy
+from .form import *
 
 
 def home(request):
@@ -28,7 +32,22 @@ def post_job(request):
 
 
 def login(request):
-    return render(request, "login.html")
+    # return render(request, "login.html")
+    form = UserLoginForm(request.POST or None)
+
+    if request.user.is_authenticated:
+        return redirect('/')
+
+    else:
+        if request.method == 'POST':
+            if form.is_valid():
+                auth.login(request, form.get_user())
+                return HttpResponseRedirect(get_success_url(request))
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'login.html', context)
 
 
 # Sign up de candidat:
@@ -39,7 +58,8 @@ def register_candidat(request):
         form = RegisterUserFormCandidat(request.POST)
         print(form.is_valid())
         if form.is_valid():
-            form.save(commit=False)
+            var = form.save(commit=False)
+            var.save()
             firstname = form.cleaned_data.get('prenom')
             lastname = form.cleaned_data.get('nom')
             messages.success(request, f"Account created for {lastname} {firstname}!")
@@ -49,7 +69,7 @@ def register_candidat(request):
             return redirect('register_candidat')
     else:
         form = RegisterUserFormCandidat()
-        return render(request, 'users/candidat/signupcan.html', {'form': form})
+    return render(request, 'users/candidat/signupcan.html', {'form': form})
 
 
 def register_recruter(request):
@@ -67,3 +87,9 @@ def register_recruter(request):
     else:
         form = RegisterUserFormRecruter()
         return render(request, 'users/recruteur/signuprec.html', {'form': form})
+
+
+def logout(request):
+    auth.logout(request)
+    messages.success(request, 'You are Successfully logged out')
+    return redirect('users:login')

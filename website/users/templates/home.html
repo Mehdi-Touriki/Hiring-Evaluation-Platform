@@ -11,15 +11,15 @@
        
         <header>
             OURLOGO
-            <a href="/login" id="y">Log in </a>
+            <a href="{% url 'users:login' %}" id="y">Log in </a>
         </header>
         <form>
 
         <h1>Sign up </h1>
         </br>
         <div id="ch">
-            <a href="recruteur/signuprec" id="h">Recruiter</a>
-            <a href="candidat/signupcan" id="h">candidate</a>
+            <a href="{% url 'users:register_recruter' %}" id="h">Recruiter</a>
+            <a href="{% url 'users:register_candidat' %}" id="h">candidate</a>
         </div>
         
         </form>
