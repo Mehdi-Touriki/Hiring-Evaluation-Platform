@@ -17,8 +17,8 @@
         <div class="details">
             <p>{{object.description}}</p>
         </div>
-        <a href="{% url 'job_list' object.id %}" class="back-btn">Back to Jobs</a>
-        <a href="{% url 'job_apply' object.id %}" class="apply-btn">Apply for the Job</a>
+        <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
+        <a href="{% url 'jobs:job_apply' object.id %}" class="apply-btn">Apply for the Job</a>
     </div>
 </body>
 </html>

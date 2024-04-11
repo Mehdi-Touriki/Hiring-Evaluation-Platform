@@ -1,23 +1,31 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from .models import User
 
 
 class RegisterUserFormRecruter(UserCreationForm):
-    model = User  # recruiter ilyass
+    model = get_user_model()  # recruiter ilyass
     nom = forms.CharField()
     prenom = forms.CharField()
     entreprise = forms.CharField()
-    login = forms.CharField()
-    passe = forms.CharField(widget=forms.PasswordInput)
-    repass = forms.CharField(widget=forms.PasswordInput)
+    username = forms.EmailField()
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = get_user_model()  # this is the "YourCustomUser" that you imported at the top of the file
+        fields = ('username', 'password1', 'password2', 'nom', 'prenom', 'entreprise')
 
 
 class RegisterUserFormCandidat(UserCreationForm):
-    model = User
+    model = get_user_model()
     nom = forms.CharField()
     prenom = forms.CharField()
-    login = forms.CharField()
-    passe = forms.CharField(widget=forms.PasswordInput)
-    repass = forms.CharField(widget=forms.PasswordInput)
+    username = forms.EmailField()
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = get_user_model()  # this is the "YourCustomUser" that you imported at the top of the file
+        fields = ('username', 'password1', 'password2', 'nom', 'prenom')

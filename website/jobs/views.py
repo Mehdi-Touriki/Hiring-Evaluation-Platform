@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-
+from django.contrib.auth.decorators import login_required
 from django.views.generic import (
     ListView,
     DetailView,
@@ -8,7 +8,12 @@ from django.views.generic import (
     UpdateView,
     CreateView
 )
-from .models import Post
+from .models import Post, Apply_job
+
+
+@login_required
+def post_job(request):
+    return render(request, "jobs/index.html")
 
 
 def apply(request):
@@ -28,10 +33,6 @@ class JobDescriptionView(DetailView):
     context_object_name = "job"
 
 
-class JobApplyView:
-    pass
-
-
 class JobDeleteView(DeleteView):
     model = Post
 
@@ -43,10 +44,17 @@ class JobDeleteView(DeleteView):
 class JobCreateView(CreateView):
     model = Post
     fields = ['job_title', 'description']
+    template_name = "jobs/formulaire.html"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class JobApplyView(CreateView):
+    model = Apply_job
+    fields = ['cv', 'email', 'name']
+    template_name = "jobs/applyjob.html"
 
 
 class JobUpdateView(UpdateView):

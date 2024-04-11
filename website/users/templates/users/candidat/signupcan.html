@@ -10,7 +10,7 @@
 			sign up
 			
 		</header>
-		<form name="fo" method="POST" action="{% url 'register_candidat' %}" enctype="multipart/form-data">
+		<form name="fo" method="POST" action="." enctype="multipart/form-data">
 			{% csrf_token %}
 			
 			<div >
@@ -23,16 +23,16 @@
 			</div>
 			<div class="label" >
 			Login
-			{{ form.login }}
+			{{ form.username }}
 		    
 		    </div>
 			<div class="label">
 		    Mot de passe
-			{{ form.passe }}
+			{{ form.password1 }}
 		    </div>
 			<div class="label">
 			Confirmation du mot de passe
-				{{ form.repass }}	
+				{{ form.password2 }}
 		   </div>
 		
 			<input type="submit" name="valider" value="sign up" />

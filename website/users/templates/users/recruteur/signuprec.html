@@ -1,8 +1,9 @@
+{% load static %}
 <!DOCYTPE html>
 <html>
 	<head>
         <title>Recruteur</title>
-		<link rel="stylesheet" type="text/css" href="../../static/cssfiles/style-log-sign.css" />
+		<link rel="stylesheet" type="text/css" href="{% static 'cssfiles/style-log-sign.css' %}" />
 	</head>
 	<body>
 		<header>
@@ -10,6 +11,7 @@
 			<a href="../">Home</a>
 		</header>
 		<form name="fo" method="post" action=""  enctype="multipart/form-data">
+			{% csrf_token %}
 			<div class="label">Nom
 				{{ form.nom }}	
 			</div>
@@ -23,14 +25,14 @@
 			</div>
 			
 			<div class="label">Login
-				{{ form.login }}
+				{{ form.username }}
 			</div>
 			<div class="label">Mot de passe
-				{{ form.passe}}
+				{{ form.password1 }}
 			</div>
 
 			<div class="label">Confirmation du mot de passe
-				{{ form.repass }}
+				{{ form.password2 }}
 			</div>
 			
             
