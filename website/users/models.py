@@ -1,10 +1,8 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class Recruiter:
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nom_entreprise = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.username
+class User(AbstractUser):
+    # email = models.EmailField(unique=False)
+    is_recruiter = models.BooleanField(default=False)
+    is_candidate = models.BooleanField(default=False)

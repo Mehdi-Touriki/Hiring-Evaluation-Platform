@@ -1,11 +1,8 @@
-from .form import RegisterUserFormCandidat, RegisterUserFormRecruter
-from django.contrib.auth.forms import UserCreationForm
+from .models import *
 from django.contrib import auth
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse, reverse_lazy
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from .form import *
 
 
@@ -23,31 +20,32 @@ def home_can(request):
     return render(request, "users/candidat/jobs.html")
 
 
-def home_rec(request):
-    return render(request, "users/recruteur/index.html")
 
 
 def post_job(request):
     return render(request, "recruteur/formulaire.html")
 
 
-def login(request):
-    # return render(request, "login.html")
-    form = UserLoginForm(request.POST or None)
+def login_user(request):
+    print("you are now logging in")
+    if request.method == 'POST':
 
-    if request.user.is_authenticated:
-        return redirect('/')
-
-    else:
-        if request.method == 'POST':
-            if form.is_valid():
-                auth.login(request, form.get_user())
-                return HttpResponseRedirect(get_success_url(request))
-    context = {
-        'form': form,
-    }
-
-    return render(request, 'login.html', context)
+        email = request.POST.get('login')
+        password = request.POST.get('pass')
+        user = authenticate(request, username=email, password=password)
+        if user is not None and user.is_active:
+            login(request, user)
+            if request.user.is_recruiter:
+                return redirect('jobs:post_job')
+            elif request.user.is_candidate:
+                return redirect('jobs:job_list')
+            else:
+                return redirect('users:register_candidat')
+        else:
+            messages.warning(request, 'something went wrong')
+            return redirect('users:login')
+    print("you are now logging in")
+    return render(request, 'login.html')
 
 
 # Sign up de candidat:
@@ -58,15 +56,22 @@ def register_candidat(request):
         form = RegisterUserFormCandidat(request.POST)
         print(form.is_valid())
         if form.is_valid():
+            email = form.cleaned_data.get('username')
+            if User.objects.filter(username=email).exists():
+                messages.warning(request, 'Email address already exists.')
+                return render(request, 'users/candidat/signupcan.html', {'form': form})
             var = form.save(commit=False)
+            var.is_candidate = True
             var.save()
             firstname = form.cleaned_data.get('prenom')
             lastname = form.cleaned_data.get('nom')
             messages.success(request, f"Account created for {lastname} {firstname}!")
-            return redirect('login')
+            print("registration successful")
+            return redirect('users:login')
         else:
+            print(form.errors)
             messages.warning(request, 'Something went wrong when trying to register')
-            return redirect('register_candidat')
+            return redirect('users:register_candidat')
     else:
         form = RegisterUserFormCandidat()
     return render(request, 'users/candidat/signupcan.html', {'form': form})
@@ -76,17 +81,20 @@ def register_recruter(request):
     if request.method == 'POST':
         form = RegisterUserFormRecruter(request.POST)
         if form.is_valid():
-            form.save()
+            var = form.save(commit=False)
+            var.is_recruiter = True
+            var.save()
             firstname = form.cleaned_data.get('prenom')
             lastname = form.cleaned_data.get('nom')
             messages.success(request, f"Account created for {lastname} {firstname}!")
-            redirect('post_job')
+            print("registration successful")
+            return redirect('users:login')
         else:
-            messages.warning(request, 'Something went wrong')
-            return redirect('register_recruter')
+            messages.warning(request, 'Something went wrong when trying to register')
+            return redirect('users:register_recruter')
     else:
         form = RegisterUserFormRecruter()
-        return render(request, 'users/recruteur/signuprec.html', {'form': form})
+    return render(request, 'users/recruteur/signuprec.html', {'form': form})
 
 
 def logout(request):

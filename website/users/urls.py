@@ -5,7 +5,7 @@ app_name = "users"
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('login/', views.login, name='login'),
+    path('login/', views.login_user, name='login'),
     path('logout/', views.logout, name='logout'),
     # path('recruteur/', include('job.urls'), name='post_job'),
     # path('candidat/', include('jobs.urls'), name='jobs'),
