@@ -16,9 +16,9 @@ def home(request):
 #def signupcan(request):
     #return render(request, "candidat/signupcan.html")
 def home_can(request):
-    return render(request, "candidat/jobs.html")
+    return render(request, "users/candidat/jobs.html")
 def home_rec(request):
-    return render(request, "recruteur/index.html")
+    return render(request, "users/recruteur/index.html")
 def post_job(request):
     return render(request, "recruteur/formulaire.html")
 def login(request):
@@ -41,10 +41,10 @@ def register_candidat(request):
             return  redirect('jobs')
         else:
           messages.warning(request,'Something went wrong')
-          return redirect('register_candidat') 
+          return redirect('home') 
     else:
      form=RegisterUserFormCandidat()
-     return render(request,'users/candidat/signupcan.html',{'form':form})
+    return render(request,'users/candidat/signupcan.html',{'form':form})
     
 def register_recruter(request):
     if request.method== 'POST':

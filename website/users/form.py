@@ -3,7 +3,7 @@ from   django.contrib.auth import get_user_model
 from django import forms
 
 class RegisterUserFormRecruter(UserCreationForm):
-    model=get_user_model()
+   # model=get_user_model()
     nom = forms.CharField()
     prenom = forms.CharField()
     entreprise = forms.CharField()
