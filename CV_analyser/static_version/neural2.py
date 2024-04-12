@@ -6,8 +6,6 @@ from math import sqrt
 import CV_analyser.static_version.score as score
 
 
-
-   
 # Create model
 def create_model(input_shape):
     input1 = Input(shape=(input_shape,))
@@ -22,6 +20,7 @@ def create_model(input_shape):
     model = Model(inputs=[input1, input2], outputs=output)
     return model
 
+
 # Example input data parameters
 N = 134  # Length of input vectors
 num_samples = 1000  # Number of samples per iteration
@@ -33,12 +32,11 @@ model = create_model(N)
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 # Training loop
-for i in range(1000):
+for i in range(100000):
     # Generate random training data
     data1 = np.random.randint(0, 2, size=(num_samples, N))
     data2 = np.random.randint(0, 2, size=(num_samples, N))
     labels = np.array([score.cosine_similarity(x, y) for x, y in zip(data1, data2)])
-    
 
     # Train the model
     model.fit([data1, data2], labels, epochs=epochs, batch_size=batch_size, verbose=0)
@@ -47,4 +45,4 @@ for i in range(1000):
         print("Iteration:", i)
 
 # Save the model to a file
-model.save("cosine_similarity_model.keras")
+model.save("cosine_similarity_model_me.keras")

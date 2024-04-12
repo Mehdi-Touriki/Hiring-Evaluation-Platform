@@ -20,8 +20,6 @@ def home_can(request):
     return render(request, "users/candidat/jobs.html")
 
 
-
-
 def post_job(request):
     return render(request, "recruteur/formulaire.html")
 
@@ -44,7 +42,6 @@ def login_user(request):
         else:
             messages.warning(request, 'something went wrong')
             return redirect('users:login')
-    print("you are now logging in")
     return render(request, 'login.html')
 
 
