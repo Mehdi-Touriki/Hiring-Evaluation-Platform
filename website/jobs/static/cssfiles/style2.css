@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Rubik", Calibri, ui-serif;
+}
+
+/* Body styles */
+body {
+    background-color: #333;
+}
+
+/* Container styles */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Form styles */
+.apply_box {
+    max-width: 600px;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 24px -8px rgb(13, 0, 0);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #333; /* Same as .bodyy */
+}
+
+.form_container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.form_control {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    padding: 6px 10px;
+    border: 1px solid rgb(48, 47, 46);
+    box-shadow: 0 4px 24px -8px rgb(13, 0, 0);
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline-color: #E60;
+}
+
+.button_submit {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #ff7707; /* Same as .jobs-list-container .details-btn */
+    border: 1px solid #fff; /* Same as .jobs-list-container .details-btn */
+    padding: 5px 15px;
+    color: #fff; /* Same as .jobs-list-container .details-btn */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s ease-in;
+}
+
+button:hover {
+    background-color: #ff7707; /* Same as .jobs-list-container .details-btn */
+    border: 1px solid #fff; /* Same as .jobs-list-container .details-btn */
+    transition: 0.3s ease-out;
+}
+
+.textarea_control {
+    grid-column: 1 / span 2;
+}
+
+.textarea_control textarea {
+    width: 100%;
+}
+
+@media (max-width: 460px) {
+    .textarea_control {
+        grid-column: 1 / span 1;
+    }
+}
+
+/* Additional styles for .bodyy and .jobs-list-container */
+.bodyy {
+    background-color: #333;
+}
+
+.jobs-list-container {
+    max-width: 900px;
+    margin: 20px auto;
+    font-family: "Rubik", sans-serif;
+}
+
+.jobs-list-container h2 {
+    font-size: 30px;
+    border-left: 4px solid #ff7707;
+    padding-left: 20px;
+    color: #ff7707;
+}
+
+.jobs-list-container .jobs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+}
+
+.jobs-list-container .job {
+    box-shadow: 0 4px 24px -8px rgb(13, 0, 0);
+    padding: 24px;
+    border-radius: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: all 400ms ease;
+    background-color: #ff7707;
+}
+
+.jobs-list-container .job:hover {
+    transform: scale(1.03);
+}
+
+.jobs-list-container .job-title {
+    font-size: 20px;
+    padding: 10px 0;
+    margin: 0;
+    color: #fff;
+}
+
+.jobs-list-container .details-btn {
+    text-decoration: none;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+    transition: all 400ms ease;
+}
+
+.jobs-list-container .details-btn:hover {
+    background: #ff7707;
+    color: #fff;
+}
+
+.jobs-list-container .job-search {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-family: "Rubik", sans-serif;
+    box-sizing: border-box;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 940px) {
+    .jobs-list-container .jobs {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .jobs-list-container .jobs {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}

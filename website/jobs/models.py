@@ -21,10 +21,11 @@ class Post(models.Model):
         return reverse('jobs:job_description', kwargs={'pk': self.pk})
 
 
-class Apply_job(models.Model):
+class ApplyJob(models.Model):
+    application_name = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    cv = models.FileField()
+    cv = models.FileField(upload_to='website/cvs')
     job = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

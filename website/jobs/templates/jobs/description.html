@@ -12,13 +12,28 @@
     <link rel="stylesheet" href="{% static 'cssfiles/aplydesc.css' %}">
 </head>
 <body>
+        {% if messages %}
+        {% for message in messages %}
+        <div style=" {% if message.tags == 'error' %}background-color:red; {% elif message.tags == 'success' %}background-color:green;{% endif %}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
     <div class="container">
         <h2 class="job-title">{{object.job_title}}</h2>
+        <h3>{{object.job_type}}</h3>
         <div class="details">
             <p>{{object.description}}</p>
+            <p>{{object.requirements}}</p>
+            <p>Salaire: {{object.salary}} Dhs</p>
+            <p>{{object.publication_data}}</p>
         </div>
-        <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
-        <a href="{% url 'jobs:job_apply' object.id %}" class="apply-btn">Apply for the Job</a>
+       {% if user.is_authenticated %}
+            {% if user.is_candidate %}
+                <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
+                <a href="{% url 'jobs:job_apply' object.id %}" class="apply-btn">Apply for the Job</a>
+            {% endif %}
+        {% endif %}
     </div>
 </body>
 </html>

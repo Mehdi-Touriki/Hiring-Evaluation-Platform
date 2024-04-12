@@ -8,7 +8,7 @@
 		
 		<header>
 			sign up
-			
+			<a href="{% url 'users:home' %}">Home</a>
 		</header>
 		<form name="fo" method="POST" action="." enctype="multipart/form-data">
 			{% csrf_token %}

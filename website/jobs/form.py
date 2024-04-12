@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Apply_job
+from .models import ApplyJob, Post
 
 User = get_user_model()
 
@@ -12,5 +12,12 @@ class ApplyForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:
-        model = Apply_job
+        model = ApplyJob
         fields = ['cv', 'name', 'email']
+
+
+class CreateJobForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['job_title', 'job_type', 'job_location', 'publication_data',
+                  'description', 'salary', 'requirements']

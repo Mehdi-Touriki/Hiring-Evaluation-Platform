@@ -11,13 +11,16 @@
 <body onload='slider()'>
   <div class="banner">
     <div class="slider">
-        <img src="Rec2.webp" id="slideImg">
+        <img id="slideImg">
 
     </div>
     <div class="overlay">
         <div class="content">
-            <h1>Embrace The Power Of AI In Recrutment</h1>
+            <h1>Embrace The Power Of AI In Recruitment</h1>
             <div>
+                {% if user.post_set.exists %}
+                <a href="{% url 'jobs:my_jobs' %}">My Jobs</a>
+                {% endif %}
                 <a href="{% url 'jobs:job_create' %}">Post Job</a>
             </div>
         </div>
@@ -26,20 +29,17 @@
   </div>
   <script>
     var slideImg=document.getElementById("slideImg");
-    var images=new Array(
-        " images/Rec2.webp ",
-        "web_site/images/Rec.jpeg",
-        "web_site/images/image4.jpg",
-        "web_site/images/resume.jpg"
-
-    );
+    var images=["{% static 'images/Rec2.webp' %}",
+        "{% static 'images/Rec.jpeg' %}",
+        "{% static 'images/image4.jpg' %}",
+        "{% static 'images/resume.jpg' %}"];
     var len=images.length;
     var i=0;
     function slider(){
         if(i>len-1){i=0;}
         slideImg.src=images[i++];
-        setTimeout('slider()',3000);
+        setTimeout(slider, 3000);
     }
-</script>
+  </script>
 </body>
 </html>

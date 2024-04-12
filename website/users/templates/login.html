@@ -7,7 +7,7 @@
 	<body onLoad="document.fo.login.focus()">
 		<header>
 			Authentification
-			<a href="home.html">Home</a>
+			<a href="{% url 'users:home' %}">Home</a>
 		</header>
 		<form name="fo" method="post" action=".">
 			 {% csrf_token %}

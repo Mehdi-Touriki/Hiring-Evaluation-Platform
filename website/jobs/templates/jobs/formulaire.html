@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>formula</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
     <link  rel="stylesheet" href="{% static 'cssfiles/style2.css' %}" >
     <script>
         function date(){
@@ -19,26 +20,20 @@
     <div class="container">
         <div class="apply_box">
             <h1>Job Elements</h1>
-            <form method="post" action=".">
+            <form method="post" action="{% url 'jobs:job_create' %}" enctype= multipart/form-data>
+                {% csrf_token %}
              <div class="form_container">
                 <div class="form_contol">
                     <label for="title"> Job Title</label>
-                    <input id="title" name="title" placeholder="Enter job title..." required>
+                    <input id="title" name="job_title" placeholder="Enter job title..." required>
                 </div>
                 <div class="form_contol">
                     <label for="location"> Job Location</label>
-                    <select id="location" name="location">
-                     <option>Select Job Location</option>
-                     <option>Rabat</option>
-                     <option>Casablanca</option>
-                     <option>Marrakeck</option>
-                     <option>Agadir</option>
-                     <option>Tanger</option>
-                    </select>
+                    <input type="text" name = "job_location" placeholder="Enter job location..." required>
                 </div>
                 <div class="form_contol">
                     <label for="type"> Job Type</label>
-                    <input id="type" name="type" placeholder="Enter the type of job..." required>
+                    <input id="type" name="job_type" placeholder="Enter the type of job..." required>
                 </div>
                 <div class="form_contol">
                     <label for="salary"> Job Salary</label>
@@ -54,11 +49,7 @@
                 </div>
                 <div class="form_contol">
                     <label for="date">Publication date </label>
-                    <input id="date" name="date" type="date" required>
-                </div>
-                <div class="form_contol">
-                    <label for="contract">Contract Type </label>
-                    <input id="contract" name="contract" placeholder="Enter contrat type..." >
+                    <input id="date" name="publication_data" type="date" required>
                 </div>
                 <div class="button_submit">
                     <button type="submit">Post Now</button>

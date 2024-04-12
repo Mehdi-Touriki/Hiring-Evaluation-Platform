@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Apply_job
+from .models import Post, ApplyJob
 
 admin.site.register(Post)
-admin.site.register(Apply_job)
+admin.site.register(ApplyJob)
