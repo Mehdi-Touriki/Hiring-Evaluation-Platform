@@ -1,0 +1,41 @@
+<!DOCYTPE html>
+<html>
+	<head>
+        <title>Candidat</title>
+		<link rel="stylesheet" type="text/css" href="../../static/cssfiles/style-log-sign.css" />
+	</head>
+	<body>
+		
+		<header>
+			sign up
+			
+		</header>
+		<form name="fo" method="POST" action="." enctype="multipart/form-data">
+			{% csrf_token %}
+			
+			<div >
+			Nom
+			{{ form.nom }}	
+			</div>
+			<div class="label" >
+			Prénom
+			{{ form.prenom }}	
+			</div>
+			<div class="label" >
+			Login
+			{{ form.username }}
+		    
+		    </div>
+			<div class="label">
+		    Mot de passe
+			{{ form.password1 }}
+		    </div>
+			<div class="label">
+			Confirmation du mot de passe
+				{{ form.password2 }}
+		   </div>
+		
+			<input type="submit" name="valider" value="sign up" />
+		</form>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Home page</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'cssfiles/style.home.css' %}" />
+
+    </head>
+    <body>
+       
+        <header>
+            OURLOGO
+            <a href="{% url 'users:login' %}" id="y">Log in </a>
+        </header>
+        <form>
+
+        <h1>Sign up </h1>
+        </br>
+        <div id="ch">
+            <a href="{% url 'users:register_recruter' %}" id="h">Recruiter</a>
+            <a href="{% url 'users:register_candidat' %}" id="h">candidate</a>
+        </div>
+        
+        </form>
+    </body>
+
+
+
+</html> 

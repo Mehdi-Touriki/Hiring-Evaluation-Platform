@@ -1,0 +1,23 @@
+<!DOCYTPE html>
+<html>
+	<head>
+        <title>Login</title>
+		<link rel="stylesheet" type="text/css" href="../static/cssfiles/style-log-sign.css" />
+	</head>
+	<body onLoad="document.fo.login.focus()">
+		<header>
+			Authentification
+			<a href="home.html">Home</a>
+		</header>
+		<form name="fo" method="post" action="">
+			 {% csrf_token %}
+			<div class="label">Login</div>
+			<input type="text" name="login" value="" />
+
+			<div class="label">Mot de passe</div>
+			<input type="password" name="pass" />
+            
+			<input type="submit" name="valider" value="S'authentifier" />
+		</form>
+	</body>
+</html>

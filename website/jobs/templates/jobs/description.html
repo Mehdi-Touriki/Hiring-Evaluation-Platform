@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Description</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'cssfiles/aplydesc.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2 class="job-title">{{object.job_title}}</h2>
+        <div class="details">
+            <p>{{object.description}}</p>
+        </div>
+        <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
+        <a href="{% url 'jobs:job_apply' object.id %}" class="apply-btn">Apply for the Job</a>
+    </div>
+</body>
+</html>
