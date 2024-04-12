@@ -1,5 +1,4 @@
 import uuid
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
@@ -16,15 +15,12 @@ from django.http import HttpResponse
 from .models import Post, ApplyJob
 from users.models import User
 from .form import ApplyForm, CreateJobForm
+from .decorators import recruiter_required, candidate_required
 
 
-@login_required(login_url=reverse_lazy('users:login'))
+@recruiter_required
 def post_job(request):
     return render(request, "jobs/index.html")
-
-
-def apply(request):
-    return render(request, "")
 
 
 class JobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
@@ -54,6 +50,7 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == post.recruiter
 
 
+@recruiter_required
 def job_create_view(request):
     recruiter = get_object_or_404(User, id=request.user.id)
     if request.method == 'POST':
@@ -72,6 +69,7 @@ def job_create_view(request):
     return render(request, 'jobs/formulaire.html', {'form': form})
 
 
+@candidate_required
 def job_apply_view(request, pk):
     form = ApplyForm(request.POST, request.FILES)
     job = get_object_or_404(Post, id=pk)
@@ -83,7 +81,7 @@ def job_apply_view(request, pk):
             if form.is_valid():
                 print("success")
                 instance = form.save(commit=False)
-                instance.application_name = "candidature_"+str(uuid.uuid4())
+                instance.application_name = "candidature_" + str(uuid.uuid4())
                 instance.user = user
                 instance.job = job
                 instance.save()
