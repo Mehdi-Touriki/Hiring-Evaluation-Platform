@@ -19,6 +19,7 @@
                 <label for="cv" class="custom-file-label">Choose File</label>
                 <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" class="custom-file-input" required>
                 <small>Accepted file types: PDF, DOC, DOCX</small>
+                <div id="file-name" class="fileo"></div> <!-- Add a div to display the file name -->
             </div>
             <div class="form-group">
                 <label for="name">Your Name:</label>
@@ -31,6 +32,13 @@
             <button class="submit-btn" type="submit" >Submit Application</button>
         </form>
     </div>
+    <script>
+        document.getElementById("cv").addEventListener("change", function() {
+            var fileInput = this;
+            var fileNameDisplay = document.getElementById("file-name");
+            fileNameDisplay.textContent = fileInput.files[0].name;
+        });
+    </script>
 </body>
 </html>
 
