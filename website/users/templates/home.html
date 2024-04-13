@@ -1,6 +1,44 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+    <head>
+        <title>Home</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'cssfiles/style.home.css' %}" />
+    </head>
+    
+    <body>
+
+        <header class="header">
+            <div class="logo">Logo</div>
+            
+            <div class="login-logout">
+                <a href="{% url 'users:login' %}" class="login">Log in </a>
+                <a href="{% url 'users:logout' %}" class="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                 Logout</a>
+            </div>
+            <form id="logout-form" action="{% url 'users:logout' %}" method="post" style="display: none;">
+                {% csrf_token %}
+            </form>
+        </header>
+
+
+        <form>
+
+        <h1>Sign up </h1>
+        </br>
+        <div id="ch">
+            <a href="{% url 'users:register_recruter' %}" id="h">Recruiter</a>
+            <a href="{% url 'users:register_candidat' %}" id="h">candidate</a>    
+        </div>
+        
+        </form>
+    </body>
+</html> 
+
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>Home page</title>
         <meta charset="UTF-8">
@@ -30,7 +68,4 @@
         
         </form>
     </body>
-
-
-
-</html> 
+</html>  {% endcomment %}
