@@ -26,7 +26,7 @@ EDUCATION = [
 
 
 def find_experience_paragraph(resume_text: str):
-    exp_pattern = r"(?s)(?:experience|work history)(?!d)(.*?)(?:Skills|Education|Achievements)"
+    exp_pattern = r"(?s)(?:experience|work history)(?!d|s)(.*?)(?:Skills|Education|Achievements)"
     matches = re.findall(exp_pattern, resume_text, re.I)
     if len(matches) == 0:
         exp_pattern = r"(?s)(?:experience|work history)(?!d).*"
@@ -37,7 +37,6 @@ def find_experience_paragraph(resume_text: str):
     for match in matches:
         result += match
     result = result.replace("\n", " ")
-    print(result)
     matches[0] = result
     return matches
 
@@ -82,7 +81,6 @@ def calc_total_months(date: dict) -> int:
         'dec': '12'
     }
     total = 0
-    print(date)
     try:
         if len(date) == 4:
 
@@ -105,7 +103,7 @@ def calc_total_months(date: dict) -> int:
         elif len(date) == 2:
             if 'fyear' in date and 'lyear' in date:
                 if date['lyear'] in ["present", "current", "now", "date"]:
-                    date['lyear'] = "2024"
+                    date['lyear'] = str(current_year)
                 total += 12 * (int(date['lyear']) - int(date['fyear']))
             elif 'fmonth' in date and 'lmonth' in date:
                 if date['lmonth'] == "present":
@@ -113,7 +111,6 @@ def calc_total_months(date: dict) -> int:
                 else:
                     total += int(months_numbers[date['lmonth'][:3]]) - int(months_numbers[date['fmonth'][:3]])
     except KeyError:
-        print("There has been an exception while calculating dates in experience paragraph.")
         return 0
     return total
 
@@ -125,9 +122,7 @@ def find_total_months(exp_list: list[str]) -> int:
     :return:
     """
     dates = []
-    print(exp_list)
     lines = exp_list[0].split(".")
-    print(lines)
     for line in lines:
         line = line.lower()
         # dates in the form 2015 - 2020
@@ -236,6 +231,7 @@ class Resume:
         matches = find_experience_paragraph(resume_text)
         return find_total_months(matches)
 
+    #
     def find_skills(self, resume_text: str) -> list[str]:
         """
 
