@@ -132,3 +132,19 @@ class MyJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         # Filter the queryset to include only the jobs owned by the current recruiter
         queryset = queryset.filter(recruiter=self.request.user)
         return queryset
+    
+class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model=ApplyJob
+    template_name="jobs/applicantsposted.html"
+    context_object_name="users"
+    ordering = ["-email"]
+    login_url = "users:login"
+    def test_func(self):
+        return True
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        job_id = self.kwargs.get('pk')
+        job = get_object_or_404(Post, pk=job_id)
+        queryset = queryset.filter(job=job)
+        return queryset

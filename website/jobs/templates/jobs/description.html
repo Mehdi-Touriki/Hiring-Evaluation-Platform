@@ -32,6 +32,7 @@
             {% if user.is_candidate %}
                 <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
                 <a href="{% url 'jobs:job_apply' object.id %}" class="apply-btn">Apply for the Job</a>
+                <a href="{% url 'jobs:applicant_posted' object.id %}" class="apply-btn">Applicants_Posted</a>
             {% endif %}
         {% endif %}
     </div>

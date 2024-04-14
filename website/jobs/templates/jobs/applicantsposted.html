@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'cssfiles/appposted.css' %}">
+</head>
+<body class="bodyy">
+    <div class="jobs-list-container">
+        <div class="jobs">
+            {% for applicant in users %}
+            <div class="job">
+                <h3 class="job-title">{{applicant.name}}</h3>
+                <!--<h4 class="job-title">{{applicant.}}</h4>-->
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
+    </div>
+
+    
+</body>
+</html>
