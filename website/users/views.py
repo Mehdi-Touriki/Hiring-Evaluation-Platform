@@ -59,10 +59,11 @@ def register_candidat(request):
                 return render(request, 'users/candidat/signupcan.html', {'form': form})
             var = form.save(commit=False)
             var.is_candidate = True
+            var.first_name = form.cleaned_data.get('prenom')
+            var.last_name = form.cleaned_data.get('nom')
+            var.email = form.cleaned_data.get('username')
             var.save()
-            firstname = form.cleaned_data.get('prenom')
-            lastname = form.cleaned_data.get('nom')
-            messages.success(request, f"Account created for {lastname} {firstname}!")
+            messages.success(request, f"Account created for {var.last_name} {var.first_name}!")
             print("registration successful")
             return redirect('users:login')
         else:
@@ -81,9 +82,11 @@ def register_recruter(request):
             var = form.save(commit=False)
             var.is_recruiter = True
             var.save()
-            firstname = form.cleaned_data.get('prenom')
-            lastname = form.cleaned_data.get('nom')
-            messages.success(request, f"Account created for {lastname} {firstname}!")
+            var.first_name = form.cleaned_data.get('prenom')
+            var.last_name = form.cleaned_data.get('nom')
+            var.email = form.cleaned_data.get('username')
+            var.save()
+            messages.success(request, f"Account created for {var.last_name} {var.first_name}!")
             print("registration successful")
             return redirect('users:login')
         else:
