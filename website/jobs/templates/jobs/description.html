@@ -20,6 +20,17 @@
         {% endfor %}
         {% endif %}
     <div class="container">
+        {% if user.is_authenticated %}
+            {% if user.is_candidate %}
+                <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
+                <a href="{% url 'jobs:job_apply' object.id %}" class="apply-btn">Apply for the Job</a>
+            {% elif user.is_recruiter %}
+
+                <a href="{% url 'jobs:job_delete' object.id %}" class="delete-btn">Delete</a>
+                <a href="{% url 'jobs:job_update' object.id %}" class="update-btn">Update</a>
+                <a href="{% url 'jobs:my_jobs' %}" class="back-btn">Back to Jobs</a>
+            {% endif %}
+        {% endif %}
         <h2 class="job-title">{{object.job_title}}</h2>
         <h3>{{object.job_type}}</h3>
         <div class="details">
@@ -28,12 +39,7 @@
             <p>Salaire: {{object.salary}} Dhs</p>
             <p>{{object.publication_data}}</p>
         </div>
-       {% if user.is_authenticated %}
-            {% if user.is_candidate %}
-                <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
-                <a href="{% url 'jobs:job_apply' object.id %}" class="apply-btn">Apply for the Job</a>
-            {% endif %}
-        {% endif %}
+
     </div>
 </body>
 </html>

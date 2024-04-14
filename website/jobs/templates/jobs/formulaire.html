@@ -20,41 +20,43 @@
     <div class="container">
         <div class="apply_box">
             <h1>Job Elements</h1>
-            <form method="post" action="{% url 'jobs:job_create' %}" enctype= multipart/form-data>
+            <form method="post" {% if mode == 'Update' %} action="{% url 'jobs:job_update' pk=object.pk %}" {% else %} action="{% url 'jobs:job_create' %}" {% endif %} enctype="multipart/form-data">
+
                 {% csrf_token %}
-             <div class="form_container">
-                <div class="form_contol">
-                    <label for="title"> Job Title</label>
-                    <input id="title" name="job_title" placeholder="Enter job title..." required>
-                </div>
-                <div class="form_contol">
-                    <label for="location"> Job Location</label>
-                    <input type="text" name = "job_location" placeholder="Enter job location..." required>
-                </div>
-                <div class="form_contol">
-                    <label for="type"> Job Type</label>
-                    <input id="type" name="job_type" placeholder="Enter the type of job..." required>
-                </div>
-                <div class="form_contol">
-                    <label for="salary"> Job Salary</label>
-                    <input id="salary" name="salary" placeholder="Enter job salary...">
-                </div>
-                <div class="textarea_control">
-                    <label for="description"> Job Description</label>
-                    <textarea id="description" name="description" row="4" cols="50" placeholder="Enter job description..."></textarea>
-                </div>
-                <div class="textarea_control">
-                    <label for="requirements">Requirements</label>
-                    <textarea id="requirements" name="requirements" row="4" cols="50" placeholder="Enter requirements that candidats muts have..."></textarea>
-                </div>
-                <div class="form_contol">
-                    <label for="date">Publication date </label>
-                    <input id="date" name="publication_data" type="date" required>
-                </div>
-                <div class="button_submit">
-                    <button type="submit">Post Now</button>
-                </div>
-             </div>
+                <div class="form_container">
+        <div class="form_control">
+            <label for="title">Job Title</label>
+            <input id="title" name="job_title" placeholder="Enter job title..." value="{{ object.job_title }}" required>
+        </div>
+        <div class="form_control">
+            <label for="location">Job Location</label>
+            <input type="text" name="job_location" placeholder="Enter job location..." value="{{ object.job_location }}" required>
+        </div>
+        <div class="form_control">
+            <label for="type">Job Type</label>
+            <input id="type" name="job_type" placeholder="Enter the type of job..." value="{{ object.job_type }}" required>
+        </div>
+        <div class="form_control">
+            <label for="salary">Job Salary</label>
+            <input id="salary" name="salary" placeholder="Enter job salary..." value="{{ object.salary }}">
+        </div>
+        <div class="textarea_control">
+            <label for="description">Job Description</label>
+            <textarea id="description" name="description" rows="4" cols="50" placeholder="Enter job description...">{{ object.description }}</textarea>
+        </div>
+        <div class="textarea_control">
+            <label for="requirements">Requirements</label>
+            <textarea id="requirements" name="requirements" rows="4" cols="50" placeholder="Enter requirements that candidates must have...">{{ object.requirements }}</textarea>
+        </div>
+        <div class="form_control">
+            <label for="date">Publication Date</label>
+            <input id="date" name="publication_data" type="date" value="{{ object.publication_data }}" required>
+        </div>
+       <div class="button_submit">
+            <button type="submit">{% if mode == 'Update' %}Update Job{% else %}Post Now{% endif %}</button>
+       </div>
+            </div>
+
             </form>
         </div>
          

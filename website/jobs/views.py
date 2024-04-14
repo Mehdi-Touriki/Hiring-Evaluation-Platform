@@ -44,7 +44,7 @@ class JobDescriptionView(LoginRequiredMixin, DetailView):
 class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     login_url = "users:login"
-
+    success_url = reverse_lazy("jobs:my_jobs")
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.recruiter
@@ -104,16 +104,34 @@ def job_apply_view(request, pk):
 
 class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['job_title', 'description']
+    fields = [
+        'job_title',
+        'job_type',
+        'job_location',
+        'description',
+        'salary',
+        'publication_data',
+        'requirements'
+    ]
     login_url = "users:login"
+    template_name = "jobs/formulaire.html"
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.recruiter
+
+    def get_object(self, queryset=None):
+        # Retrieve the existing job instance
+        return get_object_or_404(Post, pk=self.kwargs['pk'], recruiter=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.object:  # Check if object exists (update mode)
+            context['mode'] = 'Update'  # Set mode to 'Update'
+        else:  # If object doesn't exist (create mode)
+            context['mode'] = 'Create'  # Set mode to 'Create'
+        return context
 
 
 class MyJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):

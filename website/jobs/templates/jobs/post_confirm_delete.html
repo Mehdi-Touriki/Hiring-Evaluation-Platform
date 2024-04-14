@@ -1,10 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Confirm</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Job Post</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'cssfiles/aplydesc.css' %}">
 </head>
 <body>
-    /* Crispy form here */
+    <div class="container">
+        <form action="{% url 'jobs:job_delete' object.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Confirm Delete" class="delete-btn">
+            <a href="{% url 'jobs:job_description' object.id %}" class="update-btn">Cancel</a>
+        </form>
+        <h2 class="job-title">{{object.job_title}}</h2>
+        <h3>{{object.job_type}}</h3>
+        <div class="details">
+            <p>{{object.description}}</p>
+            <p>{{object.requirements}}</p>
+            <p>Salaire: {{object.salary}} Dhs</p>
+            <p>{{object.publication_data}}</p>
+        </div>
+
+    </div>
 </body>
 </html>
