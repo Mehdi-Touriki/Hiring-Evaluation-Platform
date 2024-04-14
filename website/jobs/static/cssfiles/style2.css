@@ -54,11 +54,16 @@ input,
 select,
 textarea {
     padding: 6px 10px;
-    border: 1px solid rgb(48, 47, 46);
-    box-shadow: 0 4px 24px -8px rgb(13, 0, 0);
-    border-radius: 4px;
     font-size: 15px;
     margin-top: 10px;
+    background-color:  #333;
+
+
+}
+input{
+    border:none;
+    border:1px solid  #7c7b7b;
+    color:#fff
 }
 
 input:focus,
