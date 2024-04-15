@@ -34,3 +34,6 @@ class ApplyJob(models.Model):
 
     def get_absolute_url(self):
         return reverse('jobs:job_apply', kwargs={'pk': self.pk})
+# class R_equest(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     job = models.ForeignKey(Post, on_delete=models.CASCADE)

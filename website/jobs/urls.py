@@ -18,4 +18,7 @@ urlpatterns = [
     path('recruteur/', views.post_job, name='post_job'),
     path('recruteur/<int:pk>/update/', JobUpdateView.as_view(), name='job_update'),
     path('recruteur/<int:pk>/delete/', JobDeleteView.as_view(), name='job_delete'),
+    # ***************
+    # path('requests/<int:pk>/',views.requests,name='requests'),
+    path('jobs/', views.requests, name='requests'),
 ]

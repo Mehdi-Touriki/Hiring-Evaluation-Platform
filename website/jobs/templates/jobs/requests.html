@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Consolas:wght@400;700&display=swap">
-    <title>available-jobs</title>
+    <title>Requests</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
@@ -14,19 +13,18 @@
 </head>
 <body class="bodyy">
     <div class="jobs-list-container">
-{% comment %} ******************* {% endcomment %}
-        <header class="mine">
-            <h2>Jobs</h2>
-            <a href="{% url '#' %}" class="request">Request</a>
-        </header>
-{% comment %} ****************** {% endcomment %}
+        <h2>Requests</h2>
+    <div class="jobs-list-container">
+        <a class="post-job" href="{% url 'jobs:jobs' %}">Home</a>
+    </div>
         <input class="job-search" type="text" placeholder="Search here..." oninput="filterJobs(this.value)" />
 
         <div class="jobs">
             {% for job in jobs %}
             <div class="job">
-                <h3 class="job-title">{{job.title}}</h3>
-                <a href="{% url 'job_description' job.id %}" class="details-btn">More details</a>
+                <h3 class="job-title">{{job.job_title}}</h3>
+                <h4 class="job-title">{{job.publication_data}}</h4>
+                <a href="{% url 'jobs:job_description' job.id %}" class="details-btn">More details</a>
             </div>
             {% endfor %}
         </div>
@@ -45,5 +43,11 @@
             });
         }
     </script>
+</body>
+</html>
+</title>
+</head>
+<body>
+
 </body>
 </html>

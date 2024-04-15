@@ -17,6 +17,8 @@ from users.models import User
 from .form import ApplyForm, CreateJobForm
 from .decorators import recruiter_required, candidate_required
 
+from .models import ApplyJob
+
 
 @recruiter_required
 def post_job(request):
@@ -132,3 +134,9 @@ class MyJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         # Filter the queryset to include only the jobs owned by the current recruiter
         queryset = queryset.filter(recruiter=self.request.user)
         return queryset
+
+def requests(request):
+    user = request.user
+    replied_jobs = ApplyJob.objects.filter(user=user).select_related('job')
+    return render(request, 'requests.html', {'replied_jobs': replied_jobs})
+    

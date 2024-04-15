@@ -106,3 +106,48 @@ a.post-job:hover{
     background-color:transparent;
     border:2px solid #fff ;
 }
+/* **************** */
+.mine{
+  display: flex;
+  align-items: center; /* Center buttons vertically */
+}
+a.request{
+  margin-left: 10px; /* Optional: Add margin between buttons */
+  font-size: 13pt ;
+}
+a.request{
+	padding:14px;
+	background-color:#E60;
+	text-decoration:none;
+	color:#FFF;
+	vertical-align:middle;
+	margin-left:20px;
+  margin-right:20px;
+	border-radius:6px;
+  font-size: 20pt ;
+}
+a.request:hover{
+	background-color:#F80;
+}
+/* ***************** */
+.mine{
+  display: flex;
+  align-items: center; /* Center buttons vertically */
+  justify-content: space-between
+}
+a.request{
+    padding:14px;
+    background-color:#E60;
+    text-decoration:none;
+    color:#FFF;
+    vertical-align:middle;
+    margin-left:20px;
+    margin-right:20px;
+    border-radius:100%;
+    font-size: 16pt ;
+    font-weight: bold;
+    font-family: normal;
+}
+a.request:hover{
+    background-color:#F80;
+}
