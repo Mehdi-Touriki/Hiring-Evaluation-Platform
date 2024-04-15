@@ -8,7 +8,7 @@ def recruiter_required(view_func):
         if request.user.is_authenticated and request.user.is_recruiter:
             return view_func(request, *args, **kwargs)
         else:
-            return redirect(reverse_lazy('jobs:job_list'))  # or any other URL
+            return redirect(reverse_lazy('jobs:job_list'))
 
     return wrapper
 

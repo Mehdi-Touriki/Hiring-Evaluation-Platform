@@ -84,6 +84,9 @@ def job_apply_view(request, pk):
                 instance.application_name = "candidature_" + str(uuid.uuid4())
                 instance.user = user
                 instance.job = job
+                # file = request.FILES['cv'] or instance.cv file or path??
+                # calculate score
+                # instance.score =
                 instance.save()
                 print("success")
                 messages.success(request, 'You have successfully applied for this job!')
