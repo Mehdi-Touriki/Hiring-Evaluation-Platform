@@ -262,3 +262,28 @@ class Resume:
             if token.like_num:
                 phone = token
         return phone
+
+import re
+
+def extract_skills_and_education(text):
+    skills = []
+    education = []
+    skills_patterns = SKILLS
+    education_patterns = EDUCATION
+
+    for pattern in skills_patterns:
+        matches = re.findall(pattern, text, flags=re.IGNORECASE)
+        if matches:
+            skills.extend(matches)
+
+    for pattern in education_patterns:
+        matches = re.findall(pattern, text, flags=re.IGNORECASE)
+        if matches:
+            education.extend(matches)
+
+    # Remove duplicates and empty values from the lists
+    skills = list(set(skills))
+    education = list(set(education))
+
+    return skills, education
+
