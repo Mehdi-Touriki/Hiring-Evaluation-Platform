@@ -13,7 +13,6 @@ class Post(models.Model):
     publication_data = models.DateField(default=timezone.now)
     requirements = models.TextField()
     recruiter = models.ForeignKey(User, on_delete=models.CASCADE)
-    #candidate = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.job_title

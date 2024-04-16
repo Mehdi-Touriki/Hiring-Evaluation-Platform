@@ -21,3 +21,4 @@ class CreateJobForm(forms.ModelForm):
         model = Post
         fields = ['job_title', 'job_type', 'job_location', 'publication_data',
                   'description', 'salary', 'requirements']
+        
