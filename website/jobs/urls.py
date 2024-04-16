@@ -19,5 +19,5 @@ urlpatterns = [
     path('recruteur/', views.post_job, name='post_job'),
     path('recruteur/<int:pk>/update/', JobUpdateView.as_view(), name='job_update'),
     path('recruteur/<int:pk>/delete/', JobDeleteView.as_view(), name='job_delete'),
-    path('jobs/<int:pk>/applicantsposted/',AllApplicants.as_view(),name='applicant_posted'),
+    path('recruteur/<int:pk>/applicantsposted/',AllApplicants.as_view(),name='applicant_posted'),
 ]

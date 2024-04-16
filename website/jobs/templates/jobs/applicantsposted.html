@@ -10,15 +10,19 @@
 </head>
 <body class="bodyy">
     <div class="jobs-list-container">
+        <a href="{% url 'jobs:my_jobs' %}" class="back-btn">Back to My Jobs</a>
+    </div>
+    <div class="jobs-list-container">
         <div class="jobs">
             {% for applicant in users %}
             <div class="job">
                 <h3 class="job-title">{{applicant.name}}</h3>
-                <!--<h4 class="job-title">{{applicant.}}</h4>-->
+                <h4 class="email">{{applicant.email}}</h4>
+               <label><b>Score:</b></label> <!--<h4 class="job-title">{{applicant.score}}</h4>-->
             </div>
             {% endfor %}
         </div>
-        <a href="{% url 'jobs:job_list' %}" class="back-btn">Back to Jobs</a>
+       
     </div>
 
     
