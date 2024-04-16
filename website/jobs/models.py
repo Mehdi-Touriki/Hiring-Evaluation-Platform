@@ -13,12 +13,15 @@ class Post(models.Model):
     publication_data = models.DateField(default=timezone.now)
     requirements = models.TextField()
     recruiter = models.ForeignKey(User, on_delete=models.CASCADE)
+    #candidate = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.job_title
 
     def get_absolute_url(self):
         return reverse('jobs:job_description', kwargs={'pk': self.pk})
+    
+
 
 
 class ApplyJob(models.Model):
@@ -29,11 +32,9 @@ class ApplyJob(models.Model):
     job = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('jobs:job_apply', kwargs={'pk': self.pk})
-# class R_equest(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     job = models.ForeignKey(Post, on_delete=models.CASCADE)

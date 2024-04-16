@@ -12,12 +12,11 @@ from django.views.generic import (
     CreateView
 )
 from django.http import HttpResponse
-from .models import Post, ApplyJob
+from .models import Post, ApplyJob 
 from users.models import User
 from .form import ApplyForm, CreateJobForm
 from .decorators import recruiter_required, candidate_required
 
-from .models import ApplyJob
 
 
 @recruiter_required
@@ -135,8 +134,22 @@ class MyJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         queryset = queryset.filter(recruiter=self.request.user)
         return queryset
 
-def requests(request):
-    user = request.user
-    replied_jobs = ApplyJob.objects.filter(user=user).select_related('job')
-    return render(request, 'requests.html', {'replied_jobs': replied_jobs})
+
+
+
+
+class Myrequest(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = Post
+    template_name = "jobs/requests.html" 
+    context_object_name = "jobs"
+    ordering = ["-publication_data"]
+    login_url = "users:login"    
+
+    def test_func(self):
+        return self.request.user.is_candidate
+
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     queryset = queryset.filter(candidat=self.request.user)
+    #     return queryset
     

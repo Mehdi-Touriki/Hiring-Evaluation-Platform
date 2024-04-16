@@ -89,8 +89,8 @@
   }      
   
 a.post-job{
-    width:500px;
-    padding: 14px 40px;
+    width:100px;
+    padding: 14px ;
     text-align: center;
     margin: 20px ;
     border-radius: 25px;
@@ -106,36 +106,14 @@ a.post-job:hover{
     background-color:transparent;
     border:2px solid #fff ;
 }
-/* **************** */
+
+
 .mine{
   display: flex;
-  align-items: center; /* Center buttons vertically */
-}
-a.request{
-  margin-left: 10px; /* Optional: Add margin between buttons */
-  font-size: 13pt ;
-}
-a.request{
-	padding:14px;
-	background-color:#E60;
-	text-decoration:none;
-	color:#FFF;
-	vertical-align:middle;
-	margin-left:20px;
-  margin-right:20px;
-	border-radius:6px;
-  font-size: 20pt ;
-}
-a.request:hover{
-	background-color:#F80;
-}
-/* ***************** */
-.mine{
-  display: flex;
-  align-items: center; /* Center buttons vertically */
+  align-items: center; 
   justify-content: space-between
 }
-a.request{
+/*a.request{
     padding:14px;
     background-color:#E60;
     text-decoration:none;
@@ -150,4 +128,4 @@ a.request{
 }
 a.request:hover{
     background-color:#F80;
-}
+} */
