@@ -178,7 +178,7 @@ class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = ApplyJob
     template_name = "jobs/applicantsposted.html"
     context_object_name = "users"
-    ordering = ["-email"]
+    ordering = ["-score"]
     login_url = "users:login"
 
     def test_func(self):

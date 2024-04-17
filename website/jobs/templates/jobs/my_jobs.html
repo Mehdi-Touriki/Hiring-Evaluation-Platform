@@ -25,6 +25,7 @@
                 <h3 class="job-title">{{job.job_title}}</h3>
                 <h4 class="job-title">{{job.publication_data}}</h4>
                 <a href="{% url 'jobs:job_description' job.id %}" class="details-btn">More details</a>
+                <a href="{% url 'jobs:applicant_posted' job.id %}" class="details-btn">Applicants_Posted</a>
             </div>
             {% endfor %}
         </div>

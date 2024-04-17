@@ -6,6 +6,7 @@
       max-width: 900px;
       margin: 20px auto;
       font-family: "Rubik", sans-serif;
+      
      
     }
     
@@ -26,7 +27,7 @@
       display: flex;
       flex-direction: column;
       transition: all 400ms ease;
-      background-color: #ff7707;
+      background-color: #E60;
     }
     
     .jobs-list-container .job:hover {
@@ -37,7 +38,19 @@
       font-size: 20px;
       padding: 10px 0;
       margin: 0;
-      color: #fff;
+      color: #0a0a0a;
+    }
+    .jobs-list-container .email {
+      font-size: 15px;
+      padding: 10px 0;
+      margin: 0;
+      color: #080808;
+    }
+    label{
+      font-size: 15px;
+      
+      margin: 0;
+      color: #080808;
     }
 .back-btn {
     padding: 14px 20px; /* Adjusted padding for better appearance */
@@ -49,6 +62,7 @@
     margin-top: 20px; /* Added margin for better separation */
     border: none; /* Removed border */
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 
