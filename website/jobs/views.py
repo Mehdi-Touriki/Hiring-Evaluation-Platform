@@ -12,7 +12,7 @@ from django.views.generic import (
     CreateView
 )
 from django.http import HttpResponse
-from .models import Post, ApplyJob
+from .models import Post, ApplyJob, JOB_CATEGORIES 
 from users.models import User
 from .form import ApplyForm, CreateJobForm
 from .decorators import recruiter_required, candidate_required
@@ -71,7 +71,7 @@ def job_create_view(request):
     else:
         print("method not post")
         form = CreateJobForm()
-    return render(request, 'jobs/formulaire.html', {'form': form})
+    return render(request, 'jobs/formulaire.html', {'form': form, 'job_categories': JOB_CATEGORIES})
 
 
 @candidate_required
@@ -107,8 +107,7 @@ def job_apply_view(request, pk):
                 jd = encoded_jd.reshape((1, 134))
                 cv = encoded_cv.reshape((1, 134))
                 loaded_model = load_model("CV_analyser/static_version/trained_model_wadi3_bzf_tl3ilm.keras")
-                loaded_model.predict([jd, cv])
-                # instance.score =
+                instance.score=loaded_model.predict([jd, cv])
                 instance.save()
                 print("success")
                 messages.success(request, 'You have successfully applied for this job!')
@@ -130,6 +129,7 @@ def job_apply_view(request, pk):
 class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = [
+        'job_category'
         'job_title',
         'job_type',
         'job_location',

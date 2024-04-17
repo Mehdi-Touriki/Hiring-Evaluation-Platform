@@ -4,8 +4,16 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime
 
-
+JOB_CATEGORIES = [
+    ('category1', 'Category 1'),
+    ('category2', 'Category 2'),
+    ('category3', 'Category 3'),
+    ('category4', 'Category 4'),
+    ('category5', 'Category 5'),
+    ('category6', 'Category 6'),
+]
 class Post(models.Model):
+    job_category=models.CharField(max_length=50, choices=JOB_CATEGORIES)
     job_title = models.CharField(max_length=100)
     job_type = models.CharField(max_length=100)
     job_location = models.CharField(max_length=100)
@@ -14,7 +22,7 @@ class Post(models.Model):
     publication_data = models.DateField(default=timezone.now)
     requirements = models.TextField()
     recruiter = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    
     def __str__(self):
         return self.job_title
 

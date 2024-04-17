@@ -19,5 +19,5 @@ class ApplyForm(forms.ModelForm):
 class CreateJobForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['job_title', 'job_type', 'job_location', 'publication_data',
+        fields = ['job_category','job_title', 'job_type', 'job_location', 'publication_data',
                   'description', 'salary', 'requirements']
