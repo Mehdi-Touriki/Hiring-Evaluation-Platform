@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>available-jobs</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Consolas:wght@400;700&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
@@ -13,7 +14,11 @@
 </head>
 <body class="bodyy">
     <div class="jobs-list-container">
-        <h2>Jobs</h2>
+        
+        <header class="mine">
+            <h2>Jobs</h2>
+            <a href="{% url 'jobs:requests' %}" class="post-job">Requests</a>
+        </header>
 
         <input class="job-search" type="text" placeholder="Search here..." oninput="filterJobs(this.value)" />
 

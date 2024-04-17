@@ -190,3 +190,19 @@ class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
         job = get_object_or_404(Post, pk=job_id)
         queryset = queryset.filter(job=job)
         return queryset
+
+
+class Myrequest(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = ApplyJob
+    template_name = "jobs/requests.html"
+    context_object_name = "jobs"
+    ordering = ["-job"]
+    login_url = "users:login"
+
+    def test_func(self):
+        return self.request.user.is_candidate
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset

@@ -20,6 +20,8 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('jobs:job_description', kwargs={'pk': self.pk})
+    
+
 
 
 def upload_to(instance, filename):
@@ -36,6 +38,7 @@ class ApplyJob(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.FloatField(default=0)
     date = models.DateField(default=timezone.now)
+
 
     def __str__(self):
         return self.name

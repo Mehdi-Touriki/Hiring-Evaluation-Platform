@@ -79,7 +79,7 @@
    background: #ff7707;
     color: #fff;
 }
-  
+
   .jobs-list-container .job-search {
     width: 100%;
     padding: 12px 24px;
@@ -105,9 +105,9 @@
     }
   }      
   
-  a.post-job{
-    width:500px;
-    padding: 14px 40px;
+a.post-job{
+    width:100px;
+    padding: 14px ;
     text-align: center;
     margin: 20px ;
     border-radius: 25px;
@@ -123,3 +123,26 @@ a.post-job:hover{
     background-color:transparent;
     border:2px solid #fff ;
 }
+
+
+.mine{
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+/*a.request{
+    padding:14px;
+    background-color:#E60;
+    text-decoration:none;
+    color:#FFF;
+    vertical-align:middle;
+    margin-left:20px;
+    margin-right:20px;
+    border-radius:100%;
+    font-size: 16pt ;
+    font-weight: bold;
+    font-family: normal;
+}
+a.request:hover{
+    background-color:#F80;
+} */
