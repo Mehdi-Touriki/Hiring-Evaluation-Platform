@@ -17,6 +17,11 @@ from users.models import User
 from .form import ApplyForm, CreateJobForm
 from .decorators import recruiter_required, candidate_required
 
+import CV_analyser.static_version.extraction as extraction
+import CV_analyser.static_version.encoding as encoding
+import PyPDF2
+from tensorflow.keras.models import load_model
+
 
 @recruiter_required
 def post_job(request):
@@ -84,8 +89,25 @@ def job_apply_view(request, pk):
                 instance.application_name = "candidature_" + str(uuid.uuid4())
                 instance.user = user
                 instance.job = job
-                # file = request.FILES['cv'] or instance.cv file or path??
-                # calculate score
+                #getting the job description done
+                job_description=job.requirements + job.description
+                extracted_skills, extracted_education=extraction.extract_skills_and_education(job_description)
+                encoded_jd=encoding.encoding_jd([extracted_skills,extracted_education])
+                #getting the cv done
+                file = request.FILES['cv']
+                reader = PyPDF2.PdfFileReader(file)
+                content = ''
+                for page_num in range(reader.numPages):
+                    page = reader.getPage(page_num)
+                    content += page.extractText()
+                resume=extraction.Resume()
+                resume.get_data(content)
+                encoded_cv = encoding.encoding_resume(resume)
+                #getting the score done
+                jd = encoded_jd.reshape((1, 134))
+                cv = encoded_cv.reshape((1, 134))
+                loaded_model = load_model("CV_analyser/static_version/trained_model_wadi3_bzf_tl3ilm.keras")
+                loaded_model.predict([jd, cv])
                 # instance.score =
                 instance.save()
                 print("success")

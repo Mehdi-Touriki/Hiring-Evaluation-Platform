@@ -32,3 +32,4 @@ if __name__ == '__main__':
     gd.get_data(job_description)
     job_encoded_vector = encoding_resume(gd)
     print("Encoded job description vector:", job_encoded_vector)
+
