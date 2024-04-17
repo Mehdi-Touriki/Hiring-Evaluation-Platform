@@ -16,12 +16,10 @@ from .models import Post, ApplyJob
 from users.models import User
 from .form import ApplyForm, CreateJobForm
 from .decorators import recruiter_required, candidate_required
-
-import CV_analyser.static_version.extraction as extraction
-import CV_analyser.static_version.encoding as encoding
+from CV_analyser.static_version import encoding, extraction
 import PyPDF2
 from tensorflow.keras.models import load_model
-
+import numpy as np
 
 @recruiter_required
 def post_job(request):
@@ -50,6 +48,7 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     login_url = "users:login"
     success_url = reverse_lazy("jobs:my_jobs")
+
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.recruiter
@@ -89,26 +88,25 @@ def job_apply_view(request, pk):
                 instance.application_name = "candidature_" + str(uuid.uuid4())
                 instance.user = user
                 instance.job = job
-                #getting the job description done
-                job_description=job.requirements + job.description
-                extracted_skills, extracted_education=extraction.extract_skills_and_education(job_description)
-                encoded_jd=encoding.encoding_jd([extracted_skills,extracted_education])
-                #getting the cv done
+                # getting the job description done
+                job_description = job.requirements + job.description
+                extracted_skills, extracted_education = extraction.extract_skills_and_education(job_description)
+                encoded_jd = encoding.encoding_jd(extracted_skills, extracted_education)
+                # getting the cv done
                 file = request.FILES['cv']
-                reader = PyPDF2.PdfFileReader(file)
+                reader = PyPDF2.PdfReader(file)
                 content = ''
-                for page_num in range(reader.numPages):
-                    page = reader.getPage(page_num)
-                    content += page.extractText()
-                resume=extraction.Resume()
+                for page_num in range(len(reader.pages)):
+                    page = reader.pages[page_num]
+                    content += page.extract_text()
+                resume = extraction.Resume()
                 resume.get_data(content)
                 encoded_cv = encoding.encoding_resume(resume)
-                #getting the score done
-                jd = encoded_jd.reshape((1, 134))
-                cv = encoded_cv.reshape((1, 134))
-                loaded_model = load_model("CV_analyser/static_version/trained_model_wadi3_bzf_tl3ilm.keras")
-                loaded_model.predict([jd, cv])
-                # instance.score =
+                # getting the score done
+                jd = np.array(encoded_jd).reshape((1, 134))
+                cv = np.array(encoded_cv).reshape((1, 134))
+                loaded_model = load_model("CV_analyser/static_version/trained_model.keras")
+                instance.score = loaded_model.predict([jd, cv])
                 instance.save()
                 print("success")
                 messages.success(request, 'You have successfully applied for this job!')
@@ -140,7 +138,6 @@ class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     ]
     login_url = "users:login"
     template_name = "jobs/formulaire.html"
-
 
     def test_func(self):
         post = self.get_object()
@@ -175,16 +172,18 @@ class MyJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         # Filter the queryset to include only the jobs owned by the current recruiter
         queryset = queryset.filter(recruiter=self.request.user)
         return queryset
-    
+
+
 class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model=ApplyJob
-    template_name="jobs/applicantsposted.html"
-    context_object_name="users"
+    model = ApplyJob
+    template_name = "jobs/applicantsposted.html"
+    context_object_name = "users"
     ordering = ["-email"]
     login_url = "users:login"
+
     def test_func(self):
         return True
-    
+
     def get_queryset(self):
         queryset = super().get_queryset()
         job_id = self.kwargs.get('pk')

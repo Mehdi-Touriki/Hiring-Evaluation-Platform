@@ -272,18 +272,12 @@ def extract_skills_and_education(text):
     education_patterns = EDUCATION
 
     for pattern in skills_patterns:
-        matches = re.findall(pattern, text, flags=re.IGNORECASE)
-        if matches:
-            skills.extend(matches)
+        if pattern in text:
+            skills.append(pattern)
 
     for pattern in education_patterns:
-        matches = re.findall(pattern, text, flags=re.IGNORECASE)
-        if matches:
-            education.extend(matches)
-
-    # Remove duplicates and empty values from the lists
-    skills = list(set(skills))
-    education = list(set(education))
+        if pattern in text:
+            education.append(pattern)
 
     return skills, education
 

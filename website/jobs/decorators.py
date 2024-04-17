@@ -18,6 +18,6 @@ def candidate_required(view_func):
         if request.user.is_authenticated and request.user.is_candidate:
             return view_func(request, *args, **kwargs)
         else:
-            return redirect(reverse_lazy('jobs:post_job'))
+            return redirect(reverse_lazy('jobs:job_list'))
 
     return wrapper

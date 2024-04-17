@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import sys
+# enter your own directory here
+sys.path.append('/mnt/c/Users/kiomi/Desktop/Desktop-folders/PROGRAMMING/PROGRAMMING-folders/EnsaProjectCVAnalysis')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
