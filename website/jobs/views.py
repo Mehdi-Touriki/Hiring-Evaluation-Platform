@@ -129,7 +129,7 @@ def job_apply_view(request, pk):
 class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = [
-        'job_category'
+        'job_category',
         'job_title',
         'job_type',
         'job_location',
