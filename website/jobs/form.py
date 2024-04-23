@@ -21,4 +21,15 @@ class CreateJobForm(forms.ModelForm):
         model = Post
         fields = ['job_title', 'job_type', 'job_location', 'publication_data',
                   'description', 'salary', 'requirements']
-        
+
+
+class profilupdate(forms.ModelForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'password1', 'password2']

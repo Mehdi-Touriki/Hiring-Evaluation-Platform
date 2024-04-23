@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="50b6410c-7e02-4ed7-940b-ec2ad132d207" name="Changes" comment="resolved merge conflicts with yassine" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="karima" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Mehdi-Touriki&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="dbd6ed8f-c592-41a0-a072-7a6181f57bef" />
+        <option name="url" value="https://github.com/Mehdi-Touriki/Hiring-Evaluation-Platform.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2erRZqaAxIUMN63NGZ2rAcCU4m8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.extraction.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.neural2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.settings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.views.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kiomi/Desktop/Desktop-folders/PROGRAMMING/PROGRAMMING-folders/EnsaProjectCVAnalysis/website/jobs&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kiomi\Desktop\Desktop-folders\PROGRAMMING\PROGRAMMING-folders\EnsaProjectCVAnalysis\website\jobs" />
+      <recent name="C:\Users\kiomi\Desktop\Desktop-folders\PROGRAMMING\PROGRAMMING-folders\EnsaProjectCVAnalysis\website\jobs\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kiomi\Desktop\Desktop-folders\PROGRAMMING\PROGRAMMING-folders\EnsaProjectCVAnalysis\website\jobs\static\cssfiles" />
+      <recent name="C:\Users\kiomi\Desktop\Desktop-folders\PROGRAMMING\PROGRAMMING-folders\EnsaProjectCVAnalysis\CV_analyser\static_version" />
+      <recent name="C:\Users\kiomi\Desktop\Desktop-folders\PROGRAMMING\PROGRAMMING-folders\EnsaProjectCVAnalysis" />
+      <recent name="C:\Users\kiomi\Desktop\Desktop-folders\PROGRAMMING\PROGRAMMING-folders\EnsaProjectCVAnalysis\website\jobs" />
+      <recent name="C:\Users\kiomi\Desktop\Desktop-folders\PROGRAMMING\PROGRAMMING-folders\EnsaProjectCVAnalysis\website\jobs\templates\jobs" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50b6410c-7e02-4ed7-940b-ec2ad132d207" name="Changes" comment="" />
+      <created>1712660768545</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712660768545</updated>
+      <workItem from="1712660769705" duration="4342000" />
+      <workItem from="1712666979260" duration="4000" />
+      <workItem from="1712669200115" duration="5478000" />
+      <workItem from="1712702413032" duration="7000" />
+      <workItem from="1712738538507" duration="6589000" />
+      <workItem from="1712773720969" duration="1263000" />
+      <workItem from="1712779679506" duration="3000" />
+      <workItem from="1712828537414" duration="11480000" />
+      <workItem from="1712844683479" duration="11680000" />
+      <workItem from="1712857890976" duration="9000" />
+      <workItem from="1712857919230" duration="8536000" />
+      <workItem from="1712917827769" duration="240000" />
+      <workItem from="1712918335601" duration="27820000" />
+      <workItem from="1712949858493" duration="3670000" />
+      <workItem from="1712961422346" duration="366000" />
+      <workItem from="1712961802274" duration="2364000" />
+      <workItem from="1713000834598" duration="12000" />
+      <workItem from="1713018005842" duration="8721000" />
+      <workItem from="1713061832979" duration="671000" />
+      <workItem from="1713073961904" duration="11827000" />
+      <workItem from="1713107358314" duration="640000" />
+      <workItem from="1713126888252" duration="2895000" />
+      <workItem from="1713192165763" duration="162000" />
+      <workItem from="1713296527262" duration="2436000" />
+      <workItem from="1713338874486" duration="3037000" />
+      <workItem from="1713348628208" duration="955000" />
+      <workItem from="1713349595923" duration="11337000" />
+      <workItem from="1713381727150" duration="173000" />
+      <workItem from="1713683887959" duration="9000" />
+      <workItem from="1713717594088" duration="586000" />
+      <workItem from="1713810762332" duration="1188000" />
+      <workItem from="1713893885971" duration="1146000" />
+    </task>
+    <task id="LOCAL-00001" summary="cleaning up the website directory">
+      <option name="closed" value="true" />
+      <created>1712661032020</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712661032020</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fixed directories and templates done">
+      <option name="closed" value="true" />
+      <created>1712664683902</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712664683902</updated>
+    </task>
+    <task id="LOCAL-00003" summary="New Class based views for joblist and job details">
+      <option name="closed" value="true" />
+      <created>1712743639594</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712743639594</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changed some css links and more static html">
+      <option name="closed" value="true" />
+      <created>1712771818684</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712771818684</updated>
+    </task>
+    <task id="LOCAL-00005" summary="changes to url patterns">
+      <option name="closed" value="true" />
+      <created>1712833918641</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712833918641</updated>
+    </task>
+    <task id="LOCAL-00006" summary="merge commit karima">
+      <option name="closed" value="true" />
+      <created>1712834613585</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712834613585</updated>
+    </task>
+    <task id="LOCAL-00007" summary="database problems">
+      <option name="closed" value="true" />
+      <created>1712843774021</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712843774021</updated>
+    </task>
+    <task id="LOCAL-00008" summary="migrations">
+      <option name="closed" value="true" />
+      <created>1712843793075</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712843793075</updated>
+    </task>
+    <task id="LOCAL-00009" summary="before rwina">
+      <option name="closed" value="true" />
+      <created>1712850947169</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712850947169</updated>
+    </task>
+    <task id="LOCAL-00010" summary="after 10hours of work 3/4 of the website works :)">
+      <option name="closed" value="true" />
+      <created>1712871399759</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712871399759</updated>
+    </task>
+    <task id="LOCAL-00011" summary="login,logout,register and job applications now working">
+      <option name="closed" value="true" />
+      <created>1712938639032</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1712938639032</updated>
+    </task>
+    <task id="LOCAL-00012" summary="neural network model trained for 6 hours. with sample size 1000 and 100,000 iterations.">
+      <option name="closed" value="true" />
+      <created>1712938722730</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1712938722730</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Website hopefully done :/">
+      <option name="closed" value="true" />
+      <created>1712953544736</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1712953544737</updated>
+    </task>
+    <task id="LOCAL-00014" summary="adding decorators for access control (candidat vs recruteur)">
+      <option name="closed" value="true" />
+      <created>1712963648661</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1712963648662</updated>
+    </task>
+    <task id="LOCAL-00015" summary="hmmm">
+      <option name="closed" value="true" />
+      <created>1713062435056</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1713062435056</updated>
+    </task>
+    <task id="LOCAL-00016" summary="latest model trained (also for 6hours)">
+      <option name="closed" value="true" />
+      <created>1713101943803</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1713101943803</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update + delete buttons (also deleted all jobs in testing) and now ApplyJob model has a score field.">
+      <option name="closed" value="true" />
+      <created>1713106093896</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1713106093896</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update + delete buttons (also deleted all jobs in testing) and now ApplyJob model has a score field.">
+      <option name="closed" value="true" />
+      <created>1713106107234</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1713106107234</updated>
+    </task>
+    <task id="LOCAL-00019" summary="setting up task 5 for chaimae">
+      <option name="closed" value="true" />
+      <created>1713182285106</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1713182285106</updated>
+    </task>
+    <task id="LOCAL-00020" summary="make migrations">
+      <option name="closed" value="true" />
+      <created>1713192312530</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1713192312530</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fixed imports/pypdf problems for score calculation">
+      <option name="closed" value="true" />
+      <created>1713372487720</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1713372487720</updated>
+    </task>
+    <task id="LOCAL-00022" summary="modified button styles and position. merge with karima completed">
+      <option name="closed" value="true" />
+      <created>1713373685496</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1713373685496</updated>
+    </task>
+    <task id="LOCAL-00023" summary="resolved merge conflicts with yassine">
+      <option name="closed" value="true" />
+      <created>1713374501676</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1713374501676</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="karima" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="cleaning up the website directory" />
+    <MESSAGE value="fixed directories and templates done" />
+    <MESSAGE value="New Class based views for joblist and job details" />
+    <MESSAGE value="Changed some css links and more static html" />
+    <MESSAGE value="changes to url patterns" />
+    <MESSAGE value="merge commit karima" />
+    <MESSAGE value="database problems" />
+    <MESSAGE value="migrations" />
+    <MESSAGE value="before rwina" />
+    <MESSAGE value="after 10hours of work 3/4 of the website works :)" />
+    <MESSAGE value="login,logout,register and job applications now working" />
+    <MESSAGE value="neural network model trained for 6 hours. with sample size 1000 and 100,000 iterations." />
+    <MESSAGE value="Website hopefully done :/" />
+    <MESSAGE value="adding decorators for access control (candidat vs recruteur)" />
+    <MESSAGE value="hmmm" />
+    <MESSAGE value="latest model trained (also for 6hours)" />
+    <MESSAGE value="update + delete buttons (also deleted all jobs in testing) and now ApplyJob model has a score field." />
+    <MESSAGE value="setting up task 5 for chaimae" />
+    <MESSAGE value="make migrations" />
+    <MESSAGE value="fixed imports/pypdf problems for score calculation" />
+    <MESSAGE value="modified button styles and position. merge with karima completed" />
+    <MESSAGE value="resolved merge conflicts with yassine" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolved merge conflicts with yassine" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/EnsaProjectCVAnalysis$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1713101318659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EnsaProjectCVAnalysis$neural2.coverage" NAME="neural2 Coverage Results" MODIFIED="1713074880243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CV_analyser/static_version" />
+    <SUITE FILE_PATH="coverage/EnsaProjectCVAnalysis$views.coverage" NAME="views Coverage Results" MODIFIED="1713349794062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/website/jobs" />
+    <SUITE FILE_PATH="coverage/EnsaProjectCVAnalysis$manage.coverage" NAME="manage Coverage Results" MODIFIED="1713350585636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/website" />
+    <SUITE FILE_PATH="coverage/EnsaProjectCVAnalysis$settings.coverage" NAME="settings Coverage Results" MODIFIED="1713349348070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/website/website" />
+    <SUITE FILE_PATH="coverage/EnsaProjectCVAnalysis$extraction.coverage" NAME="extraction Coverage Results" MODIFIED="1713101629239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CV_analyser/static_version" />
+    <SUITE FILE_PATH="coverage/EnsaProjectCVAnalysis$test.coverage" NAME="test Coverage Results" MODIFIED="1712939600551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EnsaProjectCVAnalysis$main.coverage" NAME="main Coverage Results" MODIFIED="1713101825085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

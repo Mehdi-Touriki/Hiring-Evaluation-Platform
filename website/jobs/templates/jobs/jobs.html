@@ -11,13 +11,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'cssfiles/jobscss.css' %}">
+    
+    
 </head>
 <body class="bodyy">
     <div class="jobs-list-container">
-        
+
         <header class="mine">
             <h2>Jobs</h2>
             <a href="{% url 'jobs:requests' %}" class="post-job">Requests</a>
+        <header class="mine">
+            <h2>Jobs</h2>
+            <div class="button-container">
+                <a href="{% url 'jobs:profil' %}" class="post-job">Profile</a>
+                <a href="{% url 'jobs:my_saves' %}" class="post-job">Saves</a>
+            </div> 
+
         </header>
 
         <input class="job-search" type="text" placeholder="Search here..." oninput="filterJobs(this.value)" />
@@ -28,11 +37,36 @@
                 <h3 class="job-title">{{job.job_title}}</h3>
                 <h4 class="job-title">{{job.publication_data}}</h4>
                 <a href="{% url 'jobs:job_description' job.id %}" class="details-btn">More details</a>
+                <form action="{% url 'jobs:saved' %}" method="post" class="formm" id="savePostForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="job_id" value="{{ job.id }}">
+                    <button type="button" class="details-btn" disabled>Saved post</button>
+                </form>
             </div>
             {% endfor %}
         </div>
     </div>
-
+    <!-- Profil Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.formm').addEventListener('submit', function(event) {
+                // Prevent the default form submission
+                event.preventDefault();
+    
+                // Reference to the button
+                var savePostButton = document.getElementById('savePostButton');
+    
+                // Disable the button to prevent multiple clicks
+                savePostButton.setAttribute('disabled', 'disabled');
+    
+                // Change the button text to "Saved post"
+                savePostButton.innerText = 'Saved post';
+    
+                // Submit the form
+                this.submit();
+            });
+        });
+    </script>
     <script>
         function filterJobs(keyword) {
             const jobs = document.querySelectorAll('.job');

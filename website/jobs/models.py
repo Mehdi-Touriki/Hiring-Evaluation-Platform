@@ -4,7 +4,6 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime
 
-
 class Post(models.Model):
     job_title = models.CharField(max_length=100)
     job_type = models.CharField(max_length=100)
@@ -45,3 +44,25 @@ class ApplyJob(models.Model):
 
     def get_absolute_url(self):
         return reverse('jobs:job_apply', kwargs={'pk': self.pk})
+
+
+
+class Profil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+  
+    def __str__(self):
+        return f'{self.user.username} Profil'
+    
+    def get_absolute_url(self):
+        return reverse('jobs:profil')
+
+        
+
+class SavedPostt(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    saved_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    
+
+    class Meta:
+        unique_together = ('user', 'saved_post') 
+

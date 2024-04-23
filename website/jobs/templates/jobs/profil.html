@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <title>profil</title>
+    <link rel="stylesheet" href="{% static 'cssfiles/aplydesc.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>profil</h2>
+        <form enctype="multipart/form-data" action="{% url 'jobs:profil' %}" method="post">
+            {% csrf_token %}
+            {{ p_form.as_p }}
+            
+            <button class="submit-btn" type="submit">update the profil</button>
+        </form>
+    </div>
+    
+    
+</body>
+</html>

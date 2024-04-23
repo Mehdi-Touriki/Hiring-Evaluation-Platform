@@ -12,14 +12,18 @@ from django.views.generic import (
     CreateView
 )
 from django.http import HttpResponse
-from .models import Post, ApplyJob
+from .models import  ApplyJob,Profil,SavedPostt
+from .models import Post
 from users.models import User
-from .form import ApplyForm, CreateJobForm
+from .form import ApplyForm, CreateJobForm,profilupdate
 from .decorators import recruiter_required, candidate_required
 from CV_analyser.static_version import encoding, extraction
 import PyPDF2
 from tensorflow.keras.models import load_model
 import numpy as np
+from django.views.generic import View
+from django.http import JsonResponse
+
 
 @recruiter_required
 def post_job(request):
@@ -192,17 +196,76 @@ class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return queryset
 
 
+
 class Myrequest(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = ApplyJob
     template_name = "jobs/requests.html"
     context_object_name = "jobs"
     ordering = ["-job"]
+
+#update profil
+@candidate_required
+def profil(request):
+    if request.method == 'POST':
+        p_form=profilupdate(request.POST,instance=request.user)
+        if p_form.is_valid():
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect("jobs:profil")
+    else:
+        p_form = profilupdate(instance=request.user)
+
+    context = {'p_form': p_form}
+
+    return render(request,'jobs/profil.html',context)
+
+
+class saved_post(LoginRequiredMixin, View):
+    
+    
+
+    
+    def post(self, request):
+        # Get the job_id from the request data
+        job_id = request.POST.get('job_id')
+
+        # Retrieve the post object based on the job_id
+        job = get_object_or_404(Post, pk=job_id)
+
+        # Check if the user has already saved this post
+        if SavedPostt.objects.filter(user=request.user, saved_post=job).exists():
+            saved_post_instance = SavedPostt.objects.get(user=request.user, saved_post=job)
+            
+            # Remove the job from saved_post
+            saved_post_instance.delete()
+            
+            return redirect(reverse("jobs:job_list")) 
+
+        # If the post hasn't been saved by the user, create a new SavedPostt instance and save it
+        saved_post = SavedPostt(user=request.user, saved_post=job)
+        saved_post.save()
+        
+        # Return a JSON response indicating success
+        return redirect(reverse("jobs:job_list"))
+
+
+     
+
+    
+
+#hada tzad bax ybyin lina liste dyl les saves
+class MysaveJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model=SavedPostt
+    template_name = "jobs/my_saves.html"  # <app>/<model>_<viewtype>.html
+    context_object_name = "posts"
     login_url = "users:login"
 
     def test_func(self):
         return self.request.user.is_candidate
 
     def get_queryset(self):
+        # Get the queryset of all jobs
         queryset = super().get_queryset()
+        # Filter the queryset to include only the jobs owned by the current recruiter
         queryset = queryset.filter(user=self.request.user)
         return queryset
