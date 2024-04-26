@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50b6410c-7e02-4ed7-940b-ec2ad132d207" name="Changes" comment="resolved merge conflicts with yassine" />
+    <list default="true" id="50b6410c-7e02-4ed7-940b-ec2ad132d207" name="Changes" comment="resolved merge conflicts with yassine">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main2.py" beforeDir="false" afterPath="$PROJECT_DIR$/main2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/jobs/templates/jobs/jobs.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/jobs/templates/jobs/jobs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/jobs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/jobs/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +145,12 @@
       <workItem from="1713683887959" duration="9000" />
       <workItem from="1713717594088" duration="586000" />
       <workItem from="1713810762332" duration="1188000" />
-      <workItem from="1713893885971" duration="1146000" />
+      <workItem from="1713893885971" duration="1430000" />
+      <workItem from="1713895329878" duration="1320000" />
+      <workItem from="1713896819045" duration="53000" />
+      <workItem from="1713942704367" duration="3867000" />
+      <workItem from="1713966708159" duration="8000" />
+      <workItem from="1713966819331" duration="70000" />
     </task>
     <task id="LOCAL-00001" summary="cleaning up the website directory">
       <option name="closed" value="true" />

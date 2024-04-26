@@ -19,10 +19,9 @@
 
         <header class="mine">
             <h2>Jobs</h2>
-            <a href="{% url 'jobs:requests' %}" class="post-job">Requests</a>
-        <header class="mine">
-            <h2>Jobs</h2>
+
             <div class="button-container">
+                <a href="{% url 'jobs:requests' %}" class="post-job">Requests</a>
                 <a href="{% url 'jobs:profil' %}" class="post-job">Profile</a>
                 <a href="{% url 'jobs:my_saves' %}" class="post-job">Saves</a>
             </div> 
@@ -37,10 +36,10 @@
                 <h3 class="job-title">{{job.job_title}}</h3>
                 <h4 class="job-title">{{job.publication_data}}</h4>
                 <a href="{% url 'jobs:job_description' job.id %}" class="details-btn">More details</a>
-                <form action="{% url 'jobs:saved' %}" method="post" class="formm" id="savePostForm">
+                <form action="{% url 'jobs:saved' %}" method="post" class="formm">
                     {% csrf_token %}
                     <input type="hidden" name="job_id" value="{{ job.id }}">
-                    <button type="button" class="details-btn" disabled>Saved post</button>
+                    <button type="submit" class="details-btn">Save post</button>
                 </form>
             </div>
             {% endfor %}
@@ -52,16 +51,16 @@
             document.querySelector('.formm').addEventListener('submit', function(event) {
                 // Prevent the default form submission
                 event.preventDefault();
-    
+
                 // Reference to the button
                 var savePostButton = document.getElementById('savePostButton');
-    
+
                 // Disable the button to prevent multiple clicks
                 savePostButton.setAttribute('disabled', 'disabled');
-    
+
                 // Change the button text to "Saved post"
                 savePostButton.innerText = 'Saved post';
-    
+
                 // Submit the form
                 this.submit();
             });

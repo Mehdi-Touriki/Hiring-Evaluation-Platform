@@ -109,7 +109,7 @@ def job_apply_view(request, pk):
                 # getting the score done
                 jd = np.array(encoded_jd).reshape((1, 134))
                 cv = np.array(encoded_cv).reshape((1, 134))
-                loaded_model = load_model("CV_analyser/static_version/trained_model.keras")
+                loaded_model = load_model("CV_analyser/static_version/trained_model_wadi3_bzf_tl3ilm.keras")
                 instance.score = loaded_model.predict([jd, cv])
                 instance.save()
                 print("success")
@@ -197,7 +197,7 @@ class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
 
 
-class Myrequest(LoginRequiredMixin, UserPassesTestMixin, ListView):
+class Myrequest(LoginRequiredMixin, ListView):
     model = ApplyJob
     template_name = "jobs/requests.html"
     context_object_name = "jobs"
@@ -221,10 +221,6 @@ def profil(request):
 
 
 class saved_post(LoginRequiredMixin, View):
-    
-    
-
-    
     def post(self, request):
         # Get the job_id from the request data
         job_id = request.POST.get('job_id')
@@ -235,16 +231,16 @@ class saved_post(LoginRequiredMixin, View):
         # Check if the user has already saved this post
         if SavedPostt.objects.filter(user=request.user, saved_post=job).exists():
             saved_post_instance = SavedPostt.objects.get(user=request.user, saved_post=job)
-            
+
             # Remove the job from saved_post
             saved_post_instance.delete()
-            
-            return redirect(reverse("jobs:job_list")) 
 
-        # If the post hasn't been saved by the user, create a new SavedPostt instance and save it
+            return redirect(reverse("jobs:job_list"))
+
+            # If the post hasn't been saved by the user, create a new SavedPostt instance and save it
         saved_post = SavedPostt(user=request.user, saved_post=job)
         saved_post.save()
-        
+
         # Return a JSON response indicating success
         return redirect(reverse("jobs:job_list"))
 
