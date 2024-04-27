@@ -239,10 +239,13 @@ class ToggleSavedPost(LoginRequiredMixin, View):
             # If the post hasn't been saved by the user, create a new SavedPostt instance and save it
             SavedPostt.objects.create(user=request.user, saved_post=job)
 
+        # Fetch saved posts for the current user
+        saved_posts = SavedPostt.objects.filter(user=request.user).values_list('saved_post_id', flat=True)
+
         # Redirect back to the job list page with updated context
         return render(request, 'jobs/jobs.html', {
-            'jobs': Post.objects.all(),  # Assuming you want to pass all jobs to the template
-            'saved_by_user': SavedPostt.objects.filter(user=request.user).values_list('saved_post_id', flat=True)
+            'jobs': Post.objects.all(),
+            'saved_by_user': saved_posts
         })
 
 
