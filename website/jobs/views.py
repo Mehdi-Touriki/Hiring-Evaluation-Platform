@@ -246,7 +246,8 @@ class ToggleSavedPost(LoginRequiredMixin, View):
         return render(request, 'jobs/jobs.html', {
             'jobs': Post.objects.all(),
             'saved_by_user': saved_posts
-        })
+        })git status
+        
 
 
 
