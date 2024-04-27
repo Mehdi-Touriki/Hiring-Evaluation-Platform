@@ -220,7 +220,8 @@ def profil(request):
     return render(request,'jobs/profil.html',context)
 
 
-class saved_post(LoginRequiredMixin, View):
+
+class ToggleSavedPost(LoginRequiredMixin, View):
     def post(self, request):
         # Get the job_id from the request data
         job_id = request.POST.get('job_id')
@@ -229,20 +230,21 @@ class saved_post(LoginRequiredMixin, View):
         job = get_object_or_404(Post, pk=job_id)
 
         # Check if the user has already saved this post
-        if SavedPostt.objects.filter(user=request.user, saved_post=job).exists():
-            saved_post_instance = SavedPostt.objects.get(user=request.user, saved_post=job)
+        saved_by_user = SavedPostt.objects.filter(user=request.user, saved_post=job).exists()
 
-            # Remove the job from saved_post
-            saved_post_instance.delete()
-
-            return redirect(reverse("jobs:job_list"))
-
+        if saved_by_user:
+            # If the post has been saved by the user, delete it
+            SavedPostt.objects.filter(user=request.user, saved_post=job).delete()
+        else:
             # If the post hasn't been saved by the user, create a new SavedPostt instance and save it
-        saved_post = SavedPostt(user=request.user, saved_post=job)
-        saved_post.save()
+            SavedPostt.objects.create(user=request.user, saved_post=job)
 
-        # Return a JSON response indicating success
-        return redirect(reverse("jobs:job_list"))
+        # Redirect back to the job list page with updated context
+        return render(request, 'jobs/jobs.html', {
+            'jobs': Post.objects.all(),  # Assuming you want to pass all jobs to the template
+            'saved_by_user': SavedPostt.objects.filter(user=request.user).values_list('saved_post_id', flat=True)
+        })
+
 
 
      
@@ -262,6 +264,6 @@ class MysaveJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def get_queryset(self):
         # Get the queryset of all jobs
         queryset = super().get_queryset()
-        # Filter the queryset to include only the jobs owned by the current recruiter
+        
         queryset = queryset.filter(user=self.request.user)
         return queryset

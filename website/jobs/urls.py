@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from .views import (
     JobListView,
-    saved_post,
+    ToggleSavedPost,
     JobDescriptionView,
     JobDeleteView,
     JobUpdateView,
@@ -18,7 +18,7 @@ urlpatterns = [
     path('jobs/<int:pk>/', JobDescriptionView.as_view(), name='job_description'),
     path('jobs/<int:pk>/apply/', views.job_apply_view, name='job_apply'),
     path('jobs/profil/', views.profil, name='profil'),  # Updated URL pattern here
-    path('jobs/saved/', saved_post.as_view(), name='saved'),  # Updated URL pattern here hta hada
+    path('jobs/saved/', ToggleSavedPost.as_view(), name='toggle_saved'),  # Updated URL pattern here hta hada
 
     path('recruteur/new/', views.job_create_view, name='job_create'),
     path('jobs/my_saves/', MysaveJobListView.as_view(), name='my_saves'),  # o hada

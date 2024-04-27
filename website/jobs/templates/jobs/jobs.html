@@ -36,36 +36,22 @@
                 <h3 class="job-title">{{job.job_title}}</h3>
                 <h4 class="job-title">{{job.publication_data}}</h4>
                 <a href="{% url 'jobs:job_description' job.id %}" class="details-btn">More details</a>
-                <form action="{% url 'jobs:saved' %}" method="post" class="formm">
-                    {% csrf_token %}
-                    <input type="hidden" name="job_id" value="{{ job.id }}">
-                    <button type="submit" class="details-btn">Save post</button>
-                </form>
+                
+            <form action="{% url 'jobs:toggle_saved' %}" method="post" class="formm">
+                {% csrf_token %}
+                <input type="hidden" name="job_id" value="{{ job.id }}">
+                <button type="submit" class="details-btn">
+                    {% if job.id in saved_by_user %} Saved {% else %} Save post {% endif %}
+                </button>
+            </form>
+                
+
+                
             </div>
             {% endfor %}
         </div>
     </div>
-    <!-- Profil Button -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.formm').addEventListener('submit', function(event) {
-                // Prevent the default form submission
-                event.preventDefault();
-
-                // Reference to the button
-                var savePostButton = document.getElementById('savePostButton');
-
-                // Disable the button to prevent multiple clicks
-                savePostButton.setAttribute('disabled', 'disabled');
-
-                // Change the button text to "Saved post"
-                savePostButton.innerText = 'Saved post';
-
-                // Submit the form
-                this.submit();
-            });
-        });
-    </script>
+   
     <script>
         function filterJobs(keyword) {
             const jobs = document.querySelectorAll('.job');
