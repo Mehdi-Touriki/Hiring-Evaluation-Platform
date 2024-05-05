@@ -24,6 +24,14 @@
 
                 {% csrf_token %}
                 <div class="form_container">
+                    <div class="form_control">
+                        <label for="category">Job Category</label>
+                        <select id="category" name="job_category">
+                            {% for category in job_categories %}
+                                <option value="{{ category.0 }}">{{ category.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
         <div class="form_control">
             <label for="title">Job Title</label>
             <input id="title" name="job_title" placeholder="Enter job title..." value="{{ object.job_title }}" required>

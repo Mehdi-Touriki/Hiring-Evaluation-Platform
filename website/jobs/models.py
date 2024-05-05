@@ -4,7 +4,21 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime
 
+JOB_CATEGORIES = [
+    ('category1', 'Information and Technology'),
+    ('category2', 'Finance and Accounting'),
+    ('category3', 'Human Resources'),
+    ('category4', 'Health and Medical'),
+    ('category5', 'Construction and Public Works'),
+    ('category6', 'Hospitality and Catering'),
+    ('category7', 'Logistics and Transportation'),
+    ('category8', 'Media and Communication'),
+    ('category9', 'Art and Design'),
+    ('category10', 'Costumer Services'),
+]
+
 class Post(models.Model):
+    job_category=models.CharField(max_length=50, choices=JOB_CATEGORIES)
     job_title = models.CharField(max_length=100)
     job_type = models.CharField(max_length=100)
     job_location = models.CharField(max_length=100)
@@ -19,8 +33,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('jobs:job_description', kwargs={'pk': self.pk})
-    
-
 
 
 def upload_to(instance, filename):
@@ -38,7 +50,6 @@ class ApplyJob(models.Model):
     score = models.FloatField(default=0)
     date = models.DateField(default=timezone.now)
 
-
     def __str__(self):
         return self.name
 
@@ -49,20 +60,20 @@ class ApplyJob(models.Model):
 
 class Profil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-  
+
     def __str__(self):
         return f'{self.user.username} Profil'
-    
+
     def get_absolute_url(self):
         return reverse('jobs:profil')
 
-        
+
 
 class SavedPostt(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     saved_post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    
+
 
     class Meta:
-        unique_together = ('user', 'saved_post') 
+        unique_together = ('user', 'saved_post')
 

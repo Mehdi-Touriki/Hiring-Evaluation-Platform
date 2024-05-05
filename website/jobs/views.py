@@ -12,8 +12,13 @@ from django.views.generic import (
     CreateView
 )
 from django.http import HttpResponse
-from .models import  ApplyJob,Profil,SavedPostt
-from .models import Post
+from .models import (
+    ApplyJob,
+    Profil,
+    SavedPostt,
+    Post,
+    ApplyJob,
+    JOB_CATEGORIES)
 from users.models import User
 from .form import ApplyForm, CreateJobForm,profilupdate
 from .decorators import recruiter_required, candidate_required
@@ -74,7 +79,7 @@ def job_create_view(request):
     else:
         print("method not post")
         form = CreateJobForm()
-    return render(request, 'jobs/formulaire.html', {'form': form})
+    return render(request, 'jobs/formulaire.html', {'form': form, 'job_categories': JOB_CATEGORIES})
 
 
 @candidate_required
@@ -132,6 +137,7 @@ def job_apply_view(request, pk):
 class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = [
+        'job_category',
         'job_title',
         'job_type',
         'job_location',
