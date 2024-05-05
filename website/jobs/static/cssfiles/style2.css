@@ -57,13 +57,7 @@ textarea {
     font-size: 15px;
     margin-top: 10px;
     background-color:  #333;
-
-
-}
-input{
-    border:none;
-    border:1px solid  #7c7b7b;
-    color:#fff
+    color: white;
 }
 
 input:focus,
@@ -107,6 +101,6 @@ button:hover {
         grid-column: 1 / span 1;
     }
 }
-
-/* Additional styles for .bodyy and .jobs-list-container */
-
+.form_container input {
+    color: white;
+}
