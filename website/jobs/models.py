@@ -5,17 +5,18 @@ from django.urls import reverse
 from datetime import datetime
 
 JOB_CATEGORIES = [
-    ('category1', 'Informatique Et Technologie '),
-    ('category2', 'Finance et Comptabilité'),
-    ('category3', 'Ressources Humaines'),
-    ('category4', 'Santé Et Médical'),
-    ('category5', 'Construction Et Travaux Publics'),
-    ('category6', 'Hôtellerie et Restauration'),
-    ('category7', 'Logistique Et Transport'),
-    ('category8', 'Media Et Communication'),
-    ('category9', 'Art Et Design'),
-    ('category10', 'Ingénierie'),
+    ('category1', 'Information and Technology'),
+    ('category2', 'Finance and Accounting'),
+    ('category3', 'Human Resources'),
+    ('category4', 'Health and Medical'),
+    ('category5', 'Construction and Public Works'),
+    ('category6', 'Hospitality and Catering'),
+    ('category7', 'Logistics and Transportation'),
+    ('category8', 'Media and Communication'),
+    ('category9', 'Art and Design'),
+    ('category10', 'Costumer Services'),
 ]
+
 class Post(models.Model):
     job_category=models.CharField(max_length=50, choices=JOB_CATEGORIES)
     job_title = models.CharField(max_length=100)
