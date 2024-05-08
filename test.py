@@ -6,7 +6,7 @@ import tensorflow as tf
 import numpy as np
 
 # Chargement du modèle existant
-model = tf.keras.models.load_model("cosine_similarity_model_me.keras")
+model = tf.keras.models.load_model("trained_model_wadi3_akhir_amal.keras")
 cv1 = extraction.Resume()
 jd1vector = encoding.encoding_jd(
     ['project management', 'communication skills', "python", "java", "django", "mathematica", "html", "opengl",

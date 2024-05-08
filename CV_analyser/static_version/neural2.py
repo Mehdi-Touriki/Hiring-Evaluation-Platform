@@ -27,12 +27,32 @@ model = create_model(N)
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 # Example input data parameters
 N = 134  # Length of input vectors
-num_samples = 1000  # Number of samples per iteration
-epochs = 1  # Number of epochs per iteration
+num_samples = 3  # Number of samples per iteration
+epochs = 10  # Number of epochs per iteration
 batch_size = 32  # Batch size
 
 ## Training loop
-for i in range(10000):
+for i in range(20000):
+    data1 = np.random.randint(0, 2, size=(num_samples, N))
+    data2 = np.random.randint(0, 2, size=(num_samples, N))
+    labels = np.array([score.cosine_similarity(x, y) for x, y in zip(data1, data2)])
+
+    # Train the model
+    model.fit([data1, data2], labels, epochs=epochs, batch_size=batch_size, verbose=0)
+
+    # Case where both input vectors are identical
+    data1 = np.random.randint(0, 2, size=(num_samples, N))
+    labels = np.array([score.cosine_similarity(x, y) for x, y in zip(data1, data1)])
+
+    # Train the model
+    model.fit([data1, data1], labels, epochs=epochs, batch_size=batch_size, verbose=0)
+
+    # Case where input vectors are complements
+    data1 = np.random.randint(0, 2, size=(num_samples, N))
+    data2 = np.array([[0 if data1[j][k] else 1 for k in range(N)] for j in range(num_samples)])
+    labels = np.array([score.cosine_similarity(x, y) for x, y in zip(data1, data2)])
+    # Train the model
+    model.fit([data1, data1], labels, epochs=epochs, batch_size=batch_size, verbose=0)
     for j in range(10):
         data1 = np.random.randint(0, 2, size=(num_samples, N))
         # Define the desired output
@@ -53,4 +73,4 @@ for i in range(10000):
         print("Iteration:", i)
 
 # Save the model to a file
-model.save("trained_model_wadi3_akhir_amal.keras")
+model.save("trained_model_wadi3_last_hope.keras")
