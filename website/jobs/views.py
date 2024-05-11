@@ -11,6 +11,7 @@ from django.views.generic import (
     UpdateView,
     CreateView
 )
+import math
 from django.http import HttpResponse
 from .models import (
     ApplyJob,
@@ -22,7 +23,7 @@ from .models import (
 from users.models import User
 from .form import ApplyForm, CreateJobForm,profilupdate
 from .decorators import recruiter_required, candidate_required
-from CV_analyser.static_version import encoding, extraction
+from CV_analyser.static_version import encoding, extraction, score
 import PyPDF2
 from tensorflow.keras.models import load_model
 import numpy as np
@@ -100,7 +101,7 @@ def job_apply_view(request, pk):
                 # getting the job description done
                 job_description = job.requirements + job.description
                 extracted_skills, extracted_education = extraction.extract_skills_and_education(job_description)
-                encoded_jd = encoding.encoding_jd(extracted_skills, extracted_education)
+                jd = encoding.encoding_jd(extracted_skills, extracted_education)
                 # getting the cv done
                 file = request.FILES['cv']
                 reader = PyPDF2.PdfReader(file)
@@ -110,12 +111,9 @@ def job_apply_view(request, pk):
                     content += page.extract_text()
                 resume = extraction.Resume()
                 resume.get_data(content)
-                encoded_cv = encoding.encoding_resume(resume)
-                # getting the score done
-                jd = np.array(encoded_jd).reshape((1, 134))
-                cv = np.array(encoded_cv).reshape((1, 134))
-                loaded_model = load_model("CV_analyser/static_version/trained_model_wadi3_bzf_tl3ilm.keras")
-                instance.score = loaded_model.predict([jd, cv])
+                cv = encoding.encoding_resume(resume)
+                loaded_model = load_model("CV_analyser/neural_network/neural_network_1layer.keras")
+                instance.score = loaded_model.predict([math.acos(score.cosine_similarity(cv, jd))])
                 instance.save()
                 print("success")
                 messages.success(request, 'You have successfully applied for this job!')

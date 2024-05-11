@@ -4,9 +4,9 @@ import CV_analyser.static_version.score as score
 import os
 import tensorflow as tf
 import numpy as np
-
+import math
 # Chargement du modèle existant
-model = tf.keras.models.load_model("trained_model_wadi3_akhir_amal.keras")
+model = tf.keras.models.load_model("neural_network_1layer.keras")
 cv1 = extraction.Resume()
 jd1vector = encoding.encoding_jd(
     ['project management', 'communication skills', "python", "java", "django", "mathematica", "html", "opengl",
@@ -27,5 +27,5 @@ for i, filename in enumerate(os.listdir(directory)):
         cv3 = cv2.reshape((1, 134))
         print("Name:", cv1.fullname, ", Email:", cv1.email, ", Experience:", cv1.experience)
         print("Score: ", score.cosine_similarity(encoding.encoding_resume(cv1), jd1vector))
-        print("score ai:", model.predict([cv3, jd1]))
+        print("score ai:", model.predict([math.acos(score.cosine_similarity(encoding.encoding_resume(cv1), jd1vector))]))
     
