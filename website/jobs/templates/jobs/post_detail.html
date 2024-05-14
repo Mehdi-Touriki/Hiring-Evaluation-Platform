@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+    <!-- Chargement des fichiers statiques -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/job_detail.css' %}">
+</head>
+<body>
+
+<div class="job-details">
+    <h1>{{ post.job_title }}</h1>
+    <p><strong>Type:</strong> {{ post.job_type }}</p>
+    <p><strong>Location:</strong> {{ post.job_location }}</p>
+    <p><strong>Description:</strong></p>
+    <p>{{ post.description }}</p>
+    <p><strong>Salary:</strong> {{ post.salary }}</p>
+    <p><strong>Publication Date:</strong> {{ post.publication_date }}</p>
+    <p><strong>Requirements:</strong></p>
+    <p>{{ post.requirements }}</p>
+    <p><strong>Recruiter:</strong> {{ post.recruiter }}</p>
+    <!-- Lien de retour à la liste des offres d'emploi -->
+    <a href="{% url 'jobs:job_list' %}">Back to Job List</a>
+</div>
+
+</body>
+</html>
+

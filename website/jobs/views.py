@@ -13,7 +13,7 @@ from django.views.generic import (
 )
 from django.http import HttpResponse
 from .models import  ApplyJob,Profil,SavedPostt
-from .models import Post
+from .models import Post, JobCategory
 from users.models import User
 from .form import ApplyForm, CreateJobForm,profilupdate
 from .decorators import recruiter_required, candidate_required
@@ -269,3 +269,43 @@ class MysaveJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         # Filter the queryset to include only the jobs owned by the current recruiter
         queryset = queryset.filter(user=self.request.user)
         return queryset
+
+
+
+#accéder aux offres d'emploi filtrées par catégorie en fonction des choix de l'utilisateur
+   #Par exemple, dans une vue qui affiche toutes les offres d'emploi d'une catégorie spécifique:
+    
+
+# def job_category(request, category_id):
+#     category = JobCategory.objects.get(pk=category_id)
+#     posts = Post.objects.filter(category=category)
+#     return render(request, 'jobs/job_categories.html', {'category': category, 'posts': posts})
+
+# def job_categories_view(request):
+#     categories = JobCategory.objects.all()
+#     return render(request,'jobs/job_categories.html', {'categories': categories})
+    
+
+
+def home(request):
+    # Code pour la vue de la page d'accueil
+    return render(request, 'home.html')
+
+def category_list(request):
+    categories = JobCategory.objects.all()
+    return render(request, 'category_list.html', {'categories': categories})
+
+def category_detail(request, pk):
+    category = get_object_or_404(JobCategory, pk=pk)
+    posts = Post.objects.filter(category=category)
+    return render(request, 'category_detail.html', {'category': category, 'posts': posts})
+
+def post_list(request):
+    posts = Post.objects.all()
+    return render(request, 'post_list.html', {'posts': posts})
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'post_detail.html', {'post': post})
+
+

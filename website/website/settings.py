@@ -15,6 +15,7 @@ import os
 import sys
 # enter your own directory here
 sys.path.append('/mnt/c/Users/kiomi/Desktop/Desktop-folders/PROGRAMMING/PROGRAMMING-folders/EnsaProjectCVAnalysis')
+sys.path.append('/Users/noufissazidane/Desktop/Hiring-Evaluation-Platform')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

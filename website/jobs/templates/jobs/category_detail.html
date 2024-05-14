@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.get_name_display }}</title>
+</head>
+<body>
+    <h1>{{ category.get_name_display }}</h1>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'post_detail' post.pk %}">{{ post.job_title }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

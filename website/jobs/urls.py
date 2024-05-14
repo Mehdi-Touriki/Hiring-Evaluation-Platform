@@ -28,4 +28,16 @@ urlpatterns = [
     path('recruteur/<int:pk>/update/', JobUpdateView.as_view(), name='job_update'),
     path('recruteur/<int:pk>/delete/', JobDeleteView.as_view(), name='job_delete'),
     path('recruteur/<int:pk>/applicantsposted/', AllApplicants.as_view(), name='applicant_posted'),
+    
+    # Nouvelles URLs pour les catégories
+    path('categories/', views.category_list, name='category_list'),
+    path('categories/<int:pk>/', views.category_detail, name='category_detail'),
+
+
+# Nouvelles URLs pour les offres d'emploi
+#     path('post/new/', views.post_create_view, name='post_create'),
+#     path('post/<int:pk>/', views.post_detail_view, name='post_detail'),
+#     path('post/<int:pk>/update/', views.post_update_view, name='post_update'),
+#     path('post/<int:pk>/delete/', views.post_delete_view, name='post_delete'),
 ]
+

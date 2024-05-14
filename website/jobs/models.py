@@ -4,6 +4,28 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime
 
+#classe de categorie 
+#from django.db import models
+
+class JobCategory(models.Model):
+    CATEGORY_CHOICES = [
+        ('category1', 'Informatique Et Technologie'),
+        ('category2', 'Finance et Comptabilité'),
+        ('category3', 'Ressources Humaines'),
+        ('category4', 'Santé Et Médical'),
+        ('category5', 'Construction Et Travaux Publics'),
+        ('category6', 'Hôtellerie Et Restauration'),
+        ('category7', 'Logistique Et Transport'),
+        ('category8', 'Média Et Communication'),
+        ('category9', 'Art Et Design'),
+        ('category10', 'Ingénierie'),
+    ]
+    name = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
+
+    def __str__(self):
+        return self.get_name_display()
+
+
 class Post(models.Model):
     job_title = models.CharField(max_length=100)
     job_type = models.CharField(max_length=100)
@@ -13,6 +35,8 @@ class Post(models.Model):
     publication_data = models.DateField(default=timezone.now)
     requirements = models.TextField()
     recruiter = models.ForeignKey(User, on_delete=models.CASCADE)
+    #ajoutez un champ de clé étrangère vers le modèle JobCategory dans votre modèle d'offre d'emploi.
+    category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.job_title
@@ -65,4 +89,7 @@ class SavedPostt(models.Model):
 
     class Meta:
         unique_together = ('user', 'saved_post') 
+
+
+    
 

@@ -1,0 +1,23 @@
+<h1>{{ category.name }}</h1>
+<ul>
+    {% for post in posts %}
+    <li>{{ post.job_title }}</li>
+    {% endfor %}
+</ul>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Categories</title>
+</head>
+<body>
+    <h1>Job Categories</h1>
+    <ul>
+        {% for category in categories %}
+            <li><a href="{% url 'job_category' category.id %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
