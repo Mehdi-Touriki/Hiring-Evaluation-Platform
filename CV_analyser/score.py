@@ -1,6 +1,7 @@
-from math import sqrt, pow
-
-
+from math import sqrt, pow, acos
+from CV_analyser.static_version import extraction, encoding
+import PyPDF2
+from tensorflow.keras.models import load_model
 def cosine_similarity(vector1: list[float], vector2: list[float]) -> float:
     """Returns the cosine of the angle between two vectors."""
     # the cosine similarity between two vectors is the dot product of the two vectors divided by the magnitude of
@@ -40,3 +41,26 @@ def cosine_similarity(vector1: list[float], vector2: list[float]) -> float:
         return dot_product / magnitude
     except ZeroDivisionError:
         return 1
+def ai_score(model:str, resume_file, job_description:str, category:str) -> float:
+    """
+    Calculates the score of a resume file given as input with it's corresponding job description and
+    category.
+    """
+    extracted_skills = extraction.extract_skills(job_description, category)
+    extracted_education = extraction.extract_education(job_description)
+    jd = encoding.encoding_jd(extracted_skills, extracted_education, category)
+    resume = extraction.Resume()
+    resume.get_data(extraction.parse_pdf(resume_file), category)
+    cv = encoding.encoding_resume(resume, category)
+    loaded_model = load_model(model)
+    return loaded_model.predict([acos(cosine_similarity(cv, jd))])
+
+
+def static_score(resume_file:str, job_description:str, category:str) -> float:
+    resume = extraction.Resume()
+    resume.get_data(extraction.parse_pdf(resume_file), category)
+    cv = encoding.encoding_resume(resume, category)
+    extracted_skills = extraction.extract_skills(job_description, category)
+    extracted_education = extraction.extract_education(job_description)
+    jd = encoding.encoding_jd(extracted_skills, extracted_education, category)
+    return cosine_similarity(cv, jd)

@@ -8,7 +8,8 @@ cosine_values = np.cos(angles)  # Cosine values of the angles
 # Define the model architecture
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(10, activation='relu', input_shape=(1,)),
-    tf.keras.layers.Dense(1)
+    tf.keras.layers.Dense(10, activation='relu'),
+    tf.keras.layers.Dense(1, activation='sigmoid')
 ])
 
 # Compile the model
@@ -26,4 +27,4 @@ for angle in test_angles:
     print("Predicted cosine of", angle, "is:", predicted_cosine[0][0])
     print("Real cosine of", angle, "is:", math.cos(angle))
 
-model.save('neural_network_1layer_2.keras')
+model.save('neural_network_sigmoid.keras')

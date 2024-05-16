@@ -14,7 +14,15 @@
         <img id="slideImg">
 
     </div>
+
     <div class="overlay">
+    {% if messages %}
+        {% for message in messages %}
+        <div style=" {% if message.tags == 'error' %}background-color:red; {% elif message.tags == 'success' %}background-color:green;{% endif %}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
         <div class="content">
             <h1>Embrace The Power Of AI In Recruitment</h1>
             <div>

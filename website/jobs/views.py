@@ -11,8 +11,6 @@ from django.views.generic import (
     UpdateView,
     CreateView
 )
-import math
-from django.http import HttpResponse
 from .models import (
     ApplyJob,
     Profil,
@@ -23,12 +21,8 @@ from .models import (
 from users.models import User
 from .form import ApplyForm, CreateJobForm,profilupdate
 from .decorators import recruiter_required, candidate_required
-from CV_analyser.static_version import encoding, extraction, score
-import PyPDF2
-from tensorflow.keras.models import load_model
-import numpy as np
+from CV_analyser import score
 from django.views.generic import View
-from django.http import JsonResponse
 
 
 @recruiter_required
@@ -93,34 +87,19 @@ def job_apply_view(request, pk):
     if not applicant:
         if request.method == 'POST':
             if form.is_valid():
-                print("success")
                 instance = form.save(commit=False)
                 instance.application_name = "candidature_" + str(uuid.uuid4())
                 instance.user = user
                 instance.job = job
-                # getting the job description done
                 job_description = job.requirements + job.description
-                extracted_skills, extracted_education = extraction.extract_skills_and_education(job_description)
-                jd = encoding.encoding_jd(extracted_skills, extracted_education)
-                # getting the cv done
                 file = request.FILES['cv']
-                reader = PyPDF2.PdfReader(file)
-                content = ''
-                for page_num in range(len(reader.pages)):
-                    page = reader.pages[page_num]
-                    content += page.extract_text()
-                resume = extraction.Resume()
-                resume.get_data(content)
-                cv = encoding.encoding_resume(resume)
-                loaded_model = load_model("CV_analyser/neural_network/neural_network_1layer.keras")
-                instance.score = loaded_model.predict([math.acos(score.cosine_similarity(cv, jd))])
+                # instance.score = score.ai_score("neural_network/neural_network_1layer.keras", file, job_description, job.job_category)
+                instance.score = score.static_score(file, job_description, job.job_category)
                 instance.save()
-                print("success")
                 messages.success(request, 'You have successfully applied for this job!')
                 return redirect(reverse("jobs:job_description", kwargs={'pk': pk}))  # Redirect to job description page
             else:
                 print("invalid form")
-                # Form is invalid, render the form again with validation errors
                 return render(request, 'jobs/applyjob.html', {'form': form, 'pk': pk})
         else:
             print("not a post request")
