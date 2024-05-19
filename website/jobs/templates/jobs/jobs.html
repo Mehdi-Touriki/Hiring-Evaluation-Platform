@@ -31,17 +31,17 @@
         <input class="job-search" type="text" placeholder="Search here..." oninput="filterJobs(this.value)" />
 
         <div class="jobs">
-            {% for job in jobs %}
-            <div class="job">
-                <h3 class="job-title">{{job.job_title}}</h3>
-                <h4 class="job-title">{{job.publication_data}}</h4>
-                <a href="{% url 'jobs:job_description' job.id %}" class="details-btn">More details</a>
-                <form action="{% url 'jobs:saved' %}" method="post" class="formm">
-                    {% csrf_token %}
-                    <input type="hidden" name="job_id" value="{{ job.id }}">
-                    <button type="submit" class="details-btn">Save post</button>
-                </form>
-            </div>
+            {% for job in jobs_filtred %}
+                <div class="job">
+                    <h3 class="job-title">{{job.job_title}}</h3>
+                    <h4 class="job-title">{{job.publication_data}}</h4>
+                    <a href="{% url 'jobs:job_description' job.id %}" class="details-btn">More details</a>
+                    <form action="{% url 'jobs:saved' %}" method="post" class="formm">
+                        {% csrf_token %}
+                        <input type="hidden" name="job_id" value="{{ job.id }}">
+                        <button type="submit" class="details-btn">Save post</button>
+                    </form>
+                </div>
             {% endfor %}
         </div>
     </div>

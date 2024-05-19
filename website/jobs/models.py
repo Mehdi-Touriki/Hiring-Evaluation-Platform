@@ -13,7 +13,7 @@ JOB_CATEGORIES = [
     ('category6', 'Hospitality and Catering'),
     ('category7', 'Logistics and Transportation'),
     ('category8', 'Media and Communication'),
-    ('category9', 'Art and Design'),
+    ('category9', 'ArtandDesign'),
     ('category10', 'Costumer Services'),
 ]
 

@@ -28,4 +28,6 @@ urlpatterns = [
     path('recruteur/<int:pk>/update/', JobUpdateView.as_view(), name='job_update'),
     path('recruteur/<int:pk>/delete/', JobDeleteView.as_view(), name='job_delete'),
     path('recruteur/<int:pk>/applicantsposted/', AllApplicants.as_view(), name='applicant_posted'),
+    path('jobs/', views.JobListView.as_view(), name='jobs'),
+    path('jobs/categories/', views.job_categories, name='job_categories'),  # Nouvelle URL pour les catégories
 ]

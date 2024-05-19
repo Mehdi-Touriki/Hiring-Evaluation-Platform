@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .form import *
 
+from django.urls import reverse
 
 def home(request):
     return render(request, "home.html")
@@ -17,8 +18,10 @@ def home(request):
 # def signupcan(request):
 # return render(request, "candidat/signupcan.html")
 def home_can(request):
-    return render(request, "users/candidat/jobs.html")
-
+    if request.user.is_authenticated and request.user.is_candidate:
+        return redirect(reverse('jobs:job_categories'))
+    else:
+        return render(request, "users/candidat/home.html")
 
 def post_job(request):
     return render(request, "recruteur/formulaire.html")
@@ -36,7 +39,7 @@ def login_user(request):
             if request.user.is_recruiter:
                 return redirect('jobs:post_job')
             elif request.user.is_candidate:
-                return redirect('jobs:job_list')
+                return redirect('jobs:job_categories')
             else:
                 return redirect('users:register_candidat')
         else:

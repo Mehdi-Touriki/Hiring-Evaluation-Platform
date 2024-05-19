@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Categories</title>
+    <!-- Inclure vos feuilles de style CSS -->
+</head>
+<body>
+    <h1>Job Categories</h1>
+    <ul>
+        {% for category in categories %}
+        <li><a href="{% url 'jobs:jobs'%}?category={{ category.1 }}">{{ category.1 }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -248,3 +248,24 @@ class MysaveJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         # Filter the queryset to include only the jobs owned by the current recruiter
         queryset = queryset.filter(user=self.request.user)
         return queryset
+
+
+class JobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = Post
+    template_name = "jobs/jobs.html"
+    context_object_name = "jobs_filtred"
+    ordering = ["-publication_data"]
+    login_url = "users:login"
+
+    def test_func(self):
+        return self.request.user.is_candidate
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        category = self.request.GET.get('category')  # Récupérer la catégorie sélectionnée
+        if category:
+            queryset = queryset.filter(job_category=category)
+        return queryset
+
+def job_categories(request):
+    return render(request, 'jobs/job_categories.html', {'categories': JOB_CATEGORIES})
