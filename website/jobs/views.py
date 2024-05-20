@@ -19,7 +19,7 @@ from .models import (
     ApplyJob,
     JOB_CATEGORIES)
 from users.models import User
-from .form import ApplyForm, CreateJobForm,profilupdate
+from .form import ApplyForm, CreateJobForm, profilupdate
 from .decorators import recruiter_required, candidate_required
 from CV_analyser import score
 from django.views.generic import View
@@ -179,18 +179,18 @@ class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return queryset
 
 
-
 class Myrequest(LoginRequiredMixin, ListView):
     model = ApplyJob
     template_name = "jobs/requests.html"
     context_object_name = "jobs"
     ordering = ["-job"]
 
-#update profil
+
+# update profil
 @candidate_required
 def profil(request):
     if request.method == 'POST':
-        p_form=profilupdate(request.POST,instance=request.user)
+        p_form = profilupdate(request.POST, instance=request.user)
         if p_form.is_valid():
             p_form.save()
             messages.success(request, f'Your account has been updated!')
@@ -200,7 +200,7 @@ def profil(request):
 
     context = {'p_form': p_form}
 
-    return render(request,'jobs/profil.html',context)
+    return render(request, 'jobs/profil.html', context)
 
 
 class saved_post(LoginRequiredMixin, View):
@@ -228,13 +228,9 @@ class saved_post(LoginRequiredMixin, View):
         return redirect(reverse("jobs:job_list"))
 
 
-     
-
-    
-
-#hada tzad bax ybyin lina liste dyl les saves
+# hada tzad bax ybyin lina liste dyl les saves
 class MysaveJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model=SavedPostt
+    model = SavedPostt
     template_name = "jobs/my_saves.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"
     login_url = "users:login"
@@ -248,3 +244,26 @@ class MysaveJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         # Filter the queryset to include only the jobs owned by the current recruiter
         queryset = queryset.filter(user=self.request.user)
         return queryset
+
+
+CATEGORY_MAP = {v: k for k, v in JOB_CATEGORIES}
+
+
+@candidate_required
+def category(request, category_name):
+    category_name = category_name.replace("-", " ")
+    category_key = CATEGORY_MAP.get(category_name)
+
+    if not category_key:
+        messages.error(request, 'That category does not exist!!')
+        return redirect("home")
+
+    jobs = Post.objects.filter(job_category=category_key)
+
+    return render(request, "jobs/jobs.html", {"jobs": jobs, "category": category_name})
+
+
+@candidate_required
+def category_list(request):
+    categories = [c[1].replace(" ", "-") for c in JOB_CATEGORIES]
+    return render(request, "jobs/category.html", {"categories": categories})

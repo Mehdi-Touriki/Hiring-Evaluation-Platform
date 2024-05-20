@@ -5,6 +5,13 @@
 		<link rel="stylesheet" type="text/css" href="../static/cssfiles/style-log-sign.css" />
 	</head>
 	<body onLoad="document.fo.login.focus()">
+        {% if messages %}
+        {% for message in messages %}
+        <div style=" {% if message.tags == 'error' %}background-color:red; {% elif message.tags == 'success' %}background-color:green;{% endif %}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
 		<header>
 			Authentification
 			<a href="{% url 'users:home' %}">Home</a>

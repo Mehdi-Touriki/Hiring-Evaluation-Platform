@@ -25,9 +25,7 @@ def post_job(request):
 
 
 def login_user(request):
-    print("you are now logging in")
     if request.method == 'POST':
-
         email = request.POST.get('login')
         password = request.POST.get('pass')
         user = authenticate(request, username=email, password=password)
@@ -36,7 +34,7 @@ def login_user(request):
             if request.user.is_recruiter:
                 return redirect('jobs:post_job')
             elif request.user.is_candidate:
-                return redirect('jobs:job_list')
+                return redirect('jobs:category_list')
             else:
                 return redirect('users:register_candidat')
         else:

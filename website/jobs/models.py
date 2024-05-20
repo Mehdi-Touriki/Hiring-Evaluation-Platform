@@ -17,8 +17,9 @@ JOB_CATEGORIES = [
     ('category10', 'Costumer Services'),
 ]
 
+
 class Post(models.Model):
-    job_category=models.CharField(max_length=50, choices=JOB_CATEGORIES)
+    job_category = models.CharField(max_length=50, choices=JOB_CATEGORIES)
     job_title = models.CharField(max_length=100)
     job_type = models.CharField(max_length=100)
     job_location = models.CharField(max_length=100)
@@ -57,7 +58,6 @@ class ApplyJob(models.Model):
         return reverse('jobs:job_apply', kwargs={'pk': self.pk})
 
 
-
 class Profil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -68,12 +68,9 @@ class Profil(models.Model):
         return reverse('jobs:profil')
 
 
-
 class SavedPostt(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     saved_post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
-
     class Meta:
         unique_together = ('user', 'saved_post')
-

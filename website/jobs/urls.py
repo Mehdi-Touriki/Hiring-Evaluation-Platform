@@ -14,10 +14,12 @@ from .views import (
 app_name = 'jobs'
 
 urlpatterns = [
+    path('category/', views.category_list, name='category_list'),
+    path('category/<str:category_name>', views.category, name='category_jobs'),
     path('jobs/', JobListView.as_view(), name='job_list'),
     path('jobs/<int:pk>/', JobDescriptionView.as_view(), name='job_description'),
     path('jobs/<int:pk>/apply/', views.job_apply_view, name='job_apply'),
-    path('jobs/profil/', views.profil, name='profil'),  # Updated URL pattern here
+    path('profil/', views.profil, name='profil'),  # Updated URL pattern here
     path('jobs/saved/', saved_post.as_view(), name='saved'),  # Updated URL pattern here hta hada
 
     path('recruteur/new/', views.job_create_view, name='job_create'),
