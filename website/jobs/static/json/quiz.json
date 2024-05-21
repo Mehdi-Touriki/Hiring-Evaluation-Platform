@@ -1,0 +1,624 @@
+[
+        {
+            "question": "Qu'est-ce que ReactJS ?",
+            "choices": [
+                "Une bibliothèque JavaScript pour construire des interfaces utilisateur.",
+                "Un framework pour le développement d'applications mobiles.",
+                "Un langage de programmation."
+            ],
+            "reponse": "Une bibliothèque JavaScript pour construire des interfaces utilisateur."
+        },
+        {
+            "question": "Comment se nomme l'outil de ligne de commande pour créer un nouveau projet React ?",
+            "choices": [
+                "react-cli",
+                "create-react-native-app",
+                "create-react-app"
+            ],
+            "reponse": "create-react-app"
+        },
+        {
+            "question": "Quel est l'objet principal représentant un composant React ?",
+            "choices": [
+                "this.props",
+                "this.element",
+                "this.state"
+            ],
+            "reponse": "this.props"
+        },
+        {
+            "question": "Comment appelle-t-on une fonction qui est automatiquement appelée après que le composant a été ajouté à l'interface utilisateur ?",
+            "choices": [
+                "componentDidUpdate",
+                "componentDidMount",
+                "componentWillMount"
+            ],
+            "reponse": "componentDidMount"
+        },
+        {
+            "question": "Quelle méthode est utilisée pour changer l'état (state) d'un composant React ?",
+            "choices": [
+                "this.stateChange()",
+                "this.changeState()",
+                "this.setState()"
+            ],
+            "reponse": "this.setState()"
+        },
+        {
+            "question": "Dans React, quel hook permet d'ajouter un état local à un composant fonctionnel ?",
+            "choices": [
+                "useEffect",
+                "useLocalState",
+                "useState"
+            ],
+            "reponse": "useState"
+        },
+        {
+            "question": "Quel élément React est utilisé pour afficher du texte à l'écran ?",
+            "choices": [
+                "<text>",
+                "<div>",
+                "<span>"
+            ],
+            "reponse": "<span>"
+        },
+        {
+            "question": "Comment effectuer une interpolation de variables dans une chaîne de caractères en JSX ?",
+            "choices": [
+                "<{this.props.variable}>",
+                "{ this.props.variable }",
+                "<this.props.variable>"
+            ],
+            "reponse": "{ this.props.variable }"
+        },
+        {
+            "question": "Quel concept de React est utilisé pour améliorer les performances en évitant le rendu de certains composants ?",
+            "choices": [
+                "Virtual DOM",
+                "Web Components",
+                "API react"
+            ],
+            "reponse": "Virtual DOM"
+        },
+        {
+            "question": "Quelle méthode est utilisée pour mettre à jour un composant juste avant qu'il ne soit rendu à l'écran ?",
+            "choices": [
+                "componentWillRender",
+                "componentWillUpdate",
+                "componentDidUpdate"
+            ],
+            "reponse": "componentWillUpdate"
+        },
+        {
+            "question": "Qui a conçu le PHP ?",
+            "choices": [
+                "Tim Berners-Lee",
+                "Rasmus Lerdorf",
+                "Rambo",
+                "yankam joel",
+                "vous !"
+            ],
+            "reponse": "Rasmus Lerdorf"
+        },
+        {
+            "question": "PHP 6 est sorti en 2011.",
+            "choices": [
+                "FAUX",
+                "VRAI"
+            ],
+            "reponse": "FAUX"
+        },
+        {
+            "question": "PHP 7, ainsi que _____, sont téléchargeables sur le site de PHP.",
+            "choices": [
+                "PHP 5",
+                "PHP 8",
+                "PHP 2",
+                "PHP 6",
+                "PHP 400"
+            ],
+            "reponse": "PHP 8"
+        },
+        {
+            "question": "Que signifie le sigle PHP ?",
+            "choices": [
+                "Private Html php",
+                "Hypertext Php",
+                "Hypertext Preprocessor",
+                "Paper Html Php"
+            ],
+            "reponse": "Hypertext Preprocessor"
+        },
+        {
+            "question": "Pour définir une version différente de PHP par host, il faut utiliser le mode _____.",
+            "choices": [
+                "PHP 7",
+                "Component",
+                "Tidy",
+                "en module",
+                "CGI"
+            ],
+            "reponse": "en module"
+        },
+        {
+            "question": "Quelle est l'option qui permet d'afficher les informations de PHP en ligne de commande ?",
+            "choices": [
+                "php -info",
+                "php -cmd",
+                "phpinfo",
+                "php -h",
+                "php -i"
+            ],
+            "reponse": "php -i"
+        },
+        {
+            "question": "Pour modifier une option ini dans le code PHP, on utilise la fonction _____.",
+            "choices": [
+                "ini_get( )",
+                "set_option( )",
+                "ini_set( )",
+                "set_ini( )"
+            ],
+            "reponse": "ini_set( )"
+        },
+        {
+            "question": "le PHP est langage de programmation ?",
+            "choices": [
+                "VRAI",
+                "FAUX"
+            ],
+            "reponse": "VRAI"
+        },
+        {
+            "question": "Quel est la valeur du resultat : const array = [ 1,2,3,4,5 ]; const result = array.indexOf(3);",
+            "choices": [
+                "-8",
+                "2",
+                "5",
+                "3"
+            ],
+            "reponse": "2"
+        },
+        {
+            "question": "Quelle notation est similaire à result += value ?",
+            "choices": [
+                "result = value",
+                "result = ++value",
+                "result = value + value",
+                "result = value++",
+                "result = result + value"
+            ],
+            "reponse": "result = result + value"
+        },
+            {
+                "question": "Quel est la valeur du resultat : const a ={ name : \"Joël\" } ;   const r = JSON.parse(JSON.stringify(n)); const result = r === n",
+                "choices": [
+                    "vrai",
+                    "faux"
+                ],
+                "reponse": "faux"
+            },
+            {
+                "question": "Quel est la valeur du resultat : const result = \"2009\" - \"1995\";",
+                "choices": [
+                    "null",
+                    "undefined",
+                    "NaN",
+                    "14",
+                    "throw a TypeError"
+                ],
+                "reponse": "14"
+            },
+            {
+                "question": "Lequel de ces éléments ne correspond pas à un opérateur Logique ?",
+                "choices": [
+                    "|",
+                    "||",
+                    "!",
+                    "&&"
+                ],
+                "reponse": "|"
+            },
+            {
+                "question": "La méthode _____ permet d’exécuter une fonction ou un bloc de code après une certaine période définie .",
+                "choices": [
+                    "checkTimeout( )",
+                    "setTimeout( )",
+                    "alert( )",
+                    "exeTimeout( )"
+                ],
+                "reponse": "setTimeout( )"
+            },
+            {
+                "question": "Il est possible de démarrer un ordinateur sans carte mère.",
+                "choices": [
+                    "FAUX",
+                    "VRAI"
+                ],
+                "reponse": "FAUX"
+            },
+            {
+                "question": "Les disques magnétiques et optiques constituent la mémoire centrale",
+                "choices": [
+                    "VRAI",
+                    "FAUX"
+                ],
+                "reponse": "FAUX"
+            },
+            {
+                "question": "L’exécution d’une instruction passe par la phase exécution puis la phase de recherche",
+                "choices": [
+                    "VRAI",
+                    "FAUX"
+                ],
+                "reponse": "FAUX"
+            },
+            {
+                "question": "Le compteur ordinal stocke l’adresse de la prochaine instruction à exécuter",
+                "choices": [
+                    "FAUX",
+                    "VRAI"
+                ],
+                "reponse": "VRAI"
+            },
+            {
+                "question": "La mémoire RAM est le lieu d’exécution des programmes",
+                "choices": [
+                    "VRAI",
+                    "FAUX"
+                ],
+                "reponse": "VRAI"
+            },
+            {
+                "question": "Le CO est le Registre de l’Instruction en cours d’exécution.",
+                "choices": [
+                    "FAUX",
+                    "VRAI"
+                ],
+                "reponse": "FAUX"
+            },
+            {
+                "question": "Le RI est le Registre de l’adresse de l’Instruction suivante",
+                "choices": [
+                    "FAUX",
+                    "VRAI"
+                ],
+                "reponse": "VRAI"
+            },
+            {
+                "question": "Le CPU est l’Unité Centrale de Traitement",
+                "choices": [
+                    "VRAI",
+                    "FAUX"
+                ],
+                "reponse": "VRAI"
+            },
+            {
+                "question": "Le CPU est le Calcul du Processeur par Une unite",
+                "choices": [
+                    "FAUX",
+                    "VRAI"
+                ],
+                "reponse": "FAUX"
+            },
+            {
+                "question": "DIMM est une Barrette de Mémoire Vive",
+                "choices": [
+                    "FAUX",
+                    "VRAI"
+                ],
+                "reponse": "VRAI"
+            },
+            {
+                "question": "Quel est le type de langage de Python ?",
+                "choices": [
+                    "Un langage de moyen-niveau.",
+                    "Un langage de haut-niveau.",
+                    "Un langage de bas-niveau."
+                ],
+                "reponse": "Un langage de haut-niveau."
+            },
+            {
+                "question": "A quoi sert le mot-clé if dans Python ?",
+                "choices": [
+                    "A vérifier si une condition est remplie.",
+                    "A vérifier si une condition est remplie pour les chaines de caractères uniquement.",
+                    "A vérifier plusieurs fois si une condition est remplie.",
+                    "A vérifier si une condition est remplie pour les entiers uniquement."
+                ],
+                "reponse": "A vérifier si une condition est remplie."
+            },
+            {
+                "question": "Quelle est la sortie du code suivant :",
+                "choices": [
+                    "15",
+                    "5",
+                    "55",
+                    "5.5",
+                    "5.0"
+                ],
+                "reponse": "5"
+            },
+            {
+                "question": "Comment créer une variable monNombre et lui donner la valeur 8 ?",
+                "choices": [
+                    "var monNombre; monNombre=8",
+                    "let monNombre=8",
+                    "monNombre=8",
+                    "var monNombre=8",
+                    "monNombre:8"
+                ],
+                "reponse": "let monNombre=8"
+            },
+            {
+                "question": "Que fait le code suivant ?",
+                "choices": [
+                    "il affiche 19 fois PandaCodeur",
+                    "il affiche 21 fois PandaCodeur",
+                    "il affiche 20 fois PandaCodeur"
+                ],
+                "reponse": "il affiche 20 fois PandaCodeur"
+            },
+            {
+                "question": "Quel est le type de données de l'objet ci-dessous ?",
+                "choices": [
+                    "Une liste de liste",
+                    "Un array",
+                    "Une Liste",
+                    "Un dictionnaire",
+                    "Un Tuple"
+                ],
+                "reponse": "Un dictionnaire"
+            },
+        {
+                "question": "Quelle est la sortie du code suivant :",
+                "choices": [
+                    "{0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49}",
+                    "{0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64}",
+                    "{0: 0, 1: 1, 2: 4, 3: 9, 88: 7744, 89: 7921, 90: 8100, 91: 8281}",
+                    "{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}"
+                ],
+                "reponse": "{0: 0, 1: 1, 2: 4, 3: 9}"
+          },
+           {
+        "question": "Quelle est la sortie du code suivant :",
+        "choices": [
+            "'tho'",
+            "'th'",
+            "'Pyt'",
+            "'Pyth'"
+        ],
+        "reponse": "'Pyt'"
+    },
+    {
+        "question": "Qu'est-ce qu'une contrainte en UML ?",
+        "choices": [
+            "Une note associée à un diagramme UML.",
+            "Une restriction sémantique exprimée sous forme d'instruction dans un langage textuel.",
+            "Une spécification d'une méthode d'une classe.",
+            "Une liste de propriétés d'une classe."
+        ],
+        "reponse": "Une restriction sémantique exprimée sous forme d'instruction dans un langage textuel."
+    },
+    {
+        "question": "Comment représente-t-on une contrainte en UML ?",
+        "choices": [
+            "Entre parenthèses.",
+            "Entre crochets.",
+            "Entre accolades.",
+            "Entre guillemets."
+        ],
+        "reponse": "Entre crochets."
+    },
+    {
+        "question": "Quel langage est souvent utilisé pour exprimer formellement les contraintes en UML ?",
+        "choices": [
+            "Langage naturel.",
+            "OCL (Object Constraint Language).",
+            "Langage de programmation.",
+            "Langage de modélisation."
+        ],
+        "reponse": "OCL (Object Constraint Language)."
+    },
+    {
+        "question": "Qu'est-ce que l'OCL dans le contexte d'UML ?",
+        "choices": [
+            "Un langage formel pour exprimer des contraintes en UML.",
+            "Un outil de validation de diagrammes UML.",
+            "Un outil de modélisation UML.",
+            "Un langage de programmation."
+        ],
+        "reponse": "Un langage formel pour exprimer des contraintes en UML."
+    },
+    {
+        "question": "Quel est l'intérêt d'utiliser OCL pour exprimer des contraintes en UML ?",
+        "choices": [
+            "OCL simplifie la création de diagrammes UML.",
+            "OCL permet d'utiliser un langage naturel pour éviter les ambiguïtés.",
+            "OCL n'a aucun intérêt par rapport au langage naturel.",
+            "OCL rend les contraintes plus accessibles et moins ambiguës que le langage naturel."
+        ],
+        "reponse": "OCL rend les contraintes plus accessibles et moins ambiguës que le langage naturel."
+    },
+    {
+        "question": "Qu'est-ce qu'une variable en C++ ?",
+        "choices": [
+            "Une fonction qui retourne une valeur",
+            "Un objet qui peut stocker une valeur",
+            "Un nom donné à un objet"
+        ],
+        "reponse": "Un objet qui peut stocker une valeur"
+    },
+    {
+        "question": "Que signifie l'opérateur \"==\" en C++ ?",
+        "choices": [
+            "Comparaison d'égalité",
+            "Affectation de valeur",
+            "Opérateur de condition"
+        ],
+        "reponse": "Comparaison d'égalité"
+    },
+    {
+        "question": "Qu'est-ce qu'un tableau en C++ ?",
+        "choices": [
+            "Une fonction qui retourne un tableau de valeurs",
+            "Une variable qui stocke une valeur unique",
+            "Une structure de données qui stocke plusieurs valeurs de même type"
+        ],
+        "reponse": "Une structure de données qui stocke plusieurs valeurs de même type"
+    },
+    {
+        "question": "Quelle est la différence entre \"cout\" et \"cin\" en C++ ?",
+        "choices": [
+            "\"cout\" affiche une valeur à l'écran et \"cin\" demande une entrée utilisateur",
+            "\"cout\" demande une entrée utilisateur et \"cin\" affiche une valeur à l'écran",
+            "Il n'y a pas de différence, ce sont deux mots-clés interchangeables"
+        ],
+        "reponse": "\"cout\" affiche une valeur à l'écran et \"cin\" demande une entrée utilisateur"
+    },
+    {
+        "question": "Que signifie l'opérateur \"->\" en C++ ?",
+        "choices": [
+            "Opérateur de sélection de membre",
+            "Opérateur de condition ternaire",
+            "Opérateur de déréférencement"
+        ],
+        "reponse": "Opérateur de sélection de membre"
+    },
+    {
+        "question": "Comment déclare-t-on une variable constante en C++ ?",
+        "choices": [
+            "En utilisant le mot-clé \"const\" avant le nom de la variable",
+            "En utilisant le mot-clé \"const\" avant le type de la variable",
+            "En utilisant le mot-clé \"const\" après le nom de la variable"
+        ],
+        "reponse": "En utilisant le mot-clé \"const\" avant le type de la variable"
+    },
+    {
+        "question": "Qu'est-ce qu'une boucle \"for\" en C++ ?",
+        "choices": [
+            "Une boucle qui s'exécute un nombre prédéfini de fois",
+            "Une boucle qui s'exécute jusqu'à ce qu'une condition soit vraie",
+            "Une boucle qui s'exécute de façon infinie"
+        ],
+        "reponse": "Une boucle qui s'exécute un nombre prédéfini de fois"
+    },
+    {
+        "question": " Quelle est la différence entre un pointeur et une référence en C++ ?",
+        "choices": [
+            "Un pointeur peut être null tandis qu'une référence ne peut pas l'être",
+            "Un pointeur peut être redirigé vers une autre adresse mémoire tandis qu'une référence ne peut pas l'être",
+            "Un pointeur est un objet tandis qu'une référence est une variable"
+        ],
+        "reponse": "Un pointeur peut être redirigé vers une autre adresse mémoire tandis qu'une référence ne peut pas l'être"
+    },
+    {
+        "question": "Comment crée-t-on une classe en C++ ?",
+        "choices": [
+            "En utilisant le mot-clé \"enum\"",
+            "En utilisant le mot-clé \"class\"",
+            "En utilisant le mot-clé \"struct\""
+        ],
+        "reponse": "En utilisant le mot-clé \"class\""
+    },
+    {
+        "question": "Quel est l'opérateur utilisé pour déclarer un pointeur en C++ ?",
+        "choices": [
+            "*",
+            "&",
+            "%",
+            "Aucune reponse"
+        ],
+        "reponse": "*"
+    },
+    {
+        "question": "Quel est le meilleur langage de programmation ?",
+        "choices": [
+            "Java",
+            "Python",
+            "Javascript",
+            "Cela dépend"
+        ],
+        "reponse": "Cela dépend"
+    },
+    {
+        "question": "Quel aspect de l'offre d'emploi est important pour attirer les développeurs qui accordent de l'importance à l'équilibre entre vie professionnelle et vie privée ?",
+        "choices": [
+            "Informations sur les méthodologies de développement utilisées",
+            "Description des projets sur lesquels ils travailleront",
+            "Informations sur les possibilités de télétravail",
+            "Liste des langages de programmation pris en charge par l'entreprise"
+        ],
+        "reponse": "Informations sur les possibilités de télétravail"
+    },
+    {
+        "question": "Quel est le meilleur moyen de recruter un développeur expérimenté ?",
+        "choices": [
+            "Poster une annonce et attendre les candidatures",
+            "Faire du scrapping de données et envoyer des emails de façon groupée",
+            "Organiser des job-datings",
+            "Approcher les profils directement sur les sites spécialisés (WeLoveDevs, Linkedin, Apec...)"
+        ],
+        "reponse": "Approcher les profils directement sur les sites spécialisés (WeLoveDevs, Linkedin, Apec...)"
+    },
+    {
+        "question": "Les développeurs préfèrent-ils utiliser un PC ou un Mac ?",
+        "choices": [
+            "PC",
+            "Mac",
+            "Aucun des deux, ils préfèrent les raspberry pi",
+            "Cela dépend"
+        ],
+        "reponse": "Cela dépend"
+    },
+    {
+        "question": "Quel langage de programmation est principalement utilisé pour ajouter des fonctionnalités interactives aux pages Web ?",
+        "choices": [
+            "Python",
+            "C++",
+            "Javascript",
+            "Ruby"
+        ],
+        "reponse": "Javascript"
+    },
+    {
+        "question": "Quelle est la différence entre le front-end et le back-end dans le développement Web ?",
+        "choices": [
+            "Le front-end gère l'interface utilisateur, tandis que le back-end gère les données et la logique côté serveur",
+            "Le front-end est lié à la conception graphique, tandis que le back-end concerne la programmation",
+            "Le front-end est pour les développeurs juniors, tandis que le back-end est pour les développeurs seniors",
+            "Le front-end est pour les applications mobiles, tandis que le back-end est pour les applications Web"
+        ],
+        "reponse": "Le front-end gère l'interface utilisateur, tandis que le back-end gère les données et la logique côté serveur"
+    },
+    {
+        "question": "Qu'est-ce qu'une API ?",
+        "choices": [
+            "Une approche de programmation innovante",
+            "Un algorithme de prédiction d'intelligence",
+            "Une interface de programmation applicative",
+            "Un outil d'analyse de performance"
+        ],
+        "reponse": "Une interface de programmation applicative"
+    },
+    {
+        "question": "Quel protocole est utilisé pour transférer des fichiers sur internet ?",
+        "choices": [
+            "POP3",
+            "FTP",
+            "HTTP",
+            "SMTP"
+        ],
+        "reponse": "FTP"
+    },
+    {
+        "question": "Dans le développement logiciel, qu'est-ce qu'un bug ?",
+        "choices": [
+            "Un défaut ou une erreur dans le code source d'un programme",
+            "Un insecte présent dans l'environnement de travail du développeur",
+            "Une fonctionnalité non désirée",
+            "Un problème de sécurité dans le code"
+        ],
+        "reponse": "Un défaut ou une erreur dans le code source d'un programme"
+    }
+]

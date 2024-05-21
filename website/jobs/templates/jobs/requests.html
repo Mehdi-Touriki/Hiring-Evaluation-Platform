@@ -13,6 +13,13 @@
 </head>
 <body class="bodyy">
     <div class="jobs-list-container">
+    {% if messages %}
+        {% for message in messages %}
+        <div style=" {% if message.tags == 'error' %}background-color:red; {% elif message.tags == 'success' %}background-color:green;{% endif %}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
         <header class="mine">
             <h2>My Requests</h2>
             <a href="{% url 'jobs:category_list' %}" class="post-job">Home</a>
@@ -28,6 +35,7 @@
                 <h3 class="job-title">{{req.job.job_title}}</h3>
                 <h4 class="job-title">{{req.job.publication_data}}</h4>
                 <a href="{% url 'jobs:job_description' req.job.id %}" class="details-btn">More details</a>
+                <a href="{% url 'jobs:quiz' pk=req.id %}" class="details-btn">Pass the Test</a>
             </div>
                 {% endif %}
             {% endfor %}

@@ -1,3 +1,4 @@
+import os
 import uuid
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -24,6 +25,52 @@ from .form import ApplyForm, CreateJobForm, profilupdate
 from .decorators import recruiter_required, candidate_required
 from CV_analyser import score
 from django.views.generic import View
+import json
+import random
+from django.shortcuts import render
+from .form import QuizForm
+from django.forms import formset_factory
+from django.http import HttpResponse
+from django.conf import settings
+
+def get_questions(n: int):
+    questions = []
+    file_path = os.path.join(settings.BASE_DIR, 'jobs', 'static', 'json', 'quiz.json')
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            my_quiz = json.load(file)
+    except FileNotFoundError:
+        raise Exception(f"File not found: {file_path}")
+    except json.JSONDecodeError:
+        raise Exception(f"Error decoding JSON from file: {file_path}")
+    selected_questions = random.sample(my_quiz, n)
+    for i in range(n):
+        questions.append({'question': f"{selected_questions[i]['question']}"})
+    return questions, selected_questions
+
+
+def calculate_score(answers, correct_answers):
+    the_score = 0
+    for i, answer in enumerate(answers):
+        if correct_answers[i]['choices'][int(answer['choices'])] == correct_answers[i]['reponse']:
+            the_score += 1
+    return the_score
+
+
+def quiz(request, pk):
+    questions, quiz_object = get_questions(20)
+    QuizFormset = formset_factory(QuizForm, extra=0)
+    if request.method == 'POST':
+        quiz_formset = QuizFormset(request.POST, initial=questions)
+        if quiz_formset.is_valid():
+            the_score = calculate_score(quiz_formset.cleaned_data, quiz_object)
+            application = get_object_or_404(ApplyJob, pk=pk)
+            application.score_technique = the_score
+            application.save()
+            messages.success(request, "You passed the test successfully!")
+            return redirect('jobs:requests')
+    quiz_formset = QuizFormset(initial=questions)
+    return render(request, "jobs/quiz.html", {'forms': quiz_formset})
 
 
 @recruiter_required
@@ -97,6 +144,7 @@ def job_apply_view(request, pk):
                 # instance.score = score.ai_score("neural_network/neural_network_1layer.keras", file, job_description, job.job_category)
                 CATEGORY_NAMES = {k: v for k, v in JOB_CATEGORIES}
                 instance.score = score.static_score(file, job_description, CATEGORY_NAMES.get(job.job_category))
+                instance.score = int(100*instance.score)
                 instance.save()
                 messages.success(request, 'You have successfully applied for this job!')
                 return redirect(reverse("jobs:job_description", kwargs={'pk': pk}))  # Redirect to job description page
@@ -171,7 +219,7 @@ class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
     login_url = "users:login"
 
     def test_func(self):
-        return True
+        return self.request.user.is_recruiter
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -179,7 +227,6 @@ class AllApplicants(LoginRequiredMixin, UserPassesTestMixin, ListView):
         job = get_object_or_404(Post, pk=job_id)
         queryset = queryset.filter(job=job)
         return queryset
-
 
 class Myrequest(LoginRequiredMixin, ListView):
     model = ApplyJob

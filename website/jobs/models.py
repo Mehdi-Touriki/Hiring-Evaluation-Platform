@@ -52,6 +52,7 @@ class ApplyJob(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.FloatField(default=0)
     date = models.DateField(default=timezone.now)
+    score_technique = models.FloatField(default=0)
 
     def __str__(self):
         return self.name

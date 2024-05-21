@@ -18,7 +18,8 @@
             <div class="job">
                 <h3 class="job-title">{{applicant.name}}</h3>
                 <h4 class="email">{{applicant.email}}</h4>
-               <label><b>Score:</b></label> <h4 class="job-title">{{applicant.score}}</h4>
+               <label><b>Score:</b></label> <h4 class="job-title">{{ applicant.score }} / 100</h4>
+            <label><b>Score technique:</b></label> <h4 class="job-title">{{applicant.score_technique}}/20</h4>
             </div>
             {% endfor %}
         </div>

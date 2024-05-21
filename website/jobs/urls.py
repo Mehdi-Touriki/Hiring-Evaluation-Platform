@@ -26,6 +26,7 @@ urlpatterns = [
     path('jobs/my_saves/', MysaveJobListView.as_view(), name='my_saves'),  # o hada
     path('recruteur/myjobs/', MyJobListView.as_view(), name='my_jobs'),
     path('candidat/myjobs/', Myrequest.as_view(), name='requests'),
+    path('candidat/myjobs/<int:pk>/quiz', views.quiz, name='quiz'),
     path('recruteur/', views.post_job, name='post_job'),
     path('recruteur/<int:pk>/update/', JobUpdateView.as_view(), name='job_update'),
     path('recruteur/<int:pk>/delete/', JobDeleteView.as_view(), name='job_delete'),
