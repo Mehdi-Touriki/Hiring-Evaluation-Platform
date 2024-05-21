@@ -62,9 +62,10 @@ def ai_score(model: str, resume_file, job_description: str, category: str) -> fl
 
 def static_score(resume_file: str, job_description: str, category: str) -> float:
     resume = extraction.Resume()
-    resume.get_data(extraction.parse_pdf(resume_file), category)
+    resume.get_data(extraction.parse_pdf(resume_file).lower(), category)
     cv = encoding.encoding_resume(resume, category)
-    extracted_skills = extraction.extract_skills(job_description, category)
-    extracted_education = extraction.extract_education(job_description)
+    job_description = job_description.lower()
+    extracted_skills = extraction.find_skills(job_description, category)
+    extracted_education = extraction.find_education(job_description)
     jd = encoding.encoding_jd(extracted_skills, extracted_education, category)
     return cosine_similarity(cv, jd)

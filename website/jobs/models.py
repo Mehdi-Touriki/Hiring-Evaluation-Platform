@@ -17,6 +17,8 @@ JOB_CATEGORIES = [
     ('category10', 'Costumer Services'),
 ]
 
+CATEGORY_MAP = {v: k for k, v in JOB_CATEGORIES}
+
 
 class Post(models.Model):
     job_category = models.CharField(max_length=50, choices=JOB_CATEGORIES)

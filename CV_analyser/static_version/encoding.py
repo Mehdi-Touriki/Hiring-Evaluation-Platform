@@ -2,10 +2,11 @@ from CV_analyser.static_version.extraction import Resume
 from CV_analyser.static_version.extraction import SKILLS, EDUCATION
 
 
-
-def encoding_jd(job_skills: list[str], job_education: list[str], category: str)->list[int]:
+def encoding_jd(job_skills: list[str], job_education: list[str], category: str) -> list[int]:
     encoded_vector = []
     concatenated_list = SKILLS[category] + EDUCATION
+    job_skills = [job.lower() for job in job_skills]
+    job_education = [job.lower() for job in job_education]
     for j in range(len(concatenated_list)):
         encoded_vector.append(0)
 
@@ -33,4 +34,3 @@ if __name__ == '__main__':
     gd.get_data(job_description, 'Information and Technology')
     job_encoded_vector = encoding_resume(gd, 'Information and Technology')
     print("Encoded job description vector:", job_encoded_vector)
-

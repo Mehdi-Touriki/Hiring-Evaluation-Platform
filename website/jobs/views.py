@@ -17,7 +17,8 @@ from .models import (
     SavedPostt,
     Post,
     ApplyJob,
-    JOB_CATEGORIES)
+    JOB_CATEGORIES,
+    CATEGORY_MAP)
 from users.models import User
 from .form import ApplyForm, CreateJobForm, profilupdate
 from .decorators import recruiter_required, candidate_required
@@ -94,7 +95,8 @@ def job_apply_view(request, pk):
                 job_description = job.requirements + job.description
                 file = request.FILES['cv']
                 # instance.score = score.ai_score("neural_network/neural_network_1layer.keras", file, job_description, job.job_category)
-                instance.score = score.static_score(file, job_description, job.job_category)
+                CATEGORY_NAMES = {k: v for k, v in JOB_CATEGORIES}
+                instance.score = score.static_score(file, job_description, CATEGORY_NAMES.get(job.job_category))
                 instance.save()
                 messages.success(request, 'You have successfully applied for this job!')
                 return redirect(reverse("jobs:job_description", kwargs={'pk': pk}))  # Redirect to job description page
@@ -244,9 +246,6 @@ class MysaveJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         # Filter the queryset to include only the jobs owned by the current recruiter
         queryset = queryset.filter(user=self.request.user)
         return queryset
-
-
-CATEGORY_MAP = {v: k for k, v in JOB_CATEGORIES}
 
 
 @candidate_required
