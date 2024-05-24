@@ -30,15 +30,15 @@ def post_job(request):
     return render(request, "jobs/index.html")
 
 
-class JobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model = Post
-    template_name = "jobs/jobs.html"  # <app>/<model>_<viewtype>.html
-    context_object_name = "jobs"
-    ordering = ["-publication_data"]
-    login_url = "users:login"
+# class JobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+#     model = Post
+#     template_name = "jobs/jobs.html"  # <app>/<model>_<viewtype>.html
+#     context_object_name = "jobs"
+#     ordering = ["-publication_data"]
+#     login_url = "users:login"
 
-    def test_func(self):
-        return self.request.user.is_candidate
+#     def test_func(self):
+#         return self.request.user.is_candidate
 
 
 class JobDescriptionView(LoginRequiredMixin, DetailView):
@@ -249,6 +249,27 @@ class MysaveJobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         queryset = queryset.filter(user=self.request.user)
         return queryset
 
+    
+
+# categories_list = [
+#     ('category1', 'Information and Technology'),
+#     ('category2', 'Finance and Accounting'),
+#     ('category3', 'Human Resources'),
+#     ('category4', 'Health and Medical'),
+#     ('category5', 'Construction and Public Works'),
+#     ('category6', 'Hospitality and Catering'),
+#     ('category7', 'Logistics and Transportation'),
+#     ('category8', 'Media and Communication'),
+#     ('category9', 'Art and Design'),
+#     ('category10', 'Customer Services')
+# ]
+
+# Utiliser une compréhension de dictionnaire pour convertir la liste de tuples en dictionnaire
+categories_dict = { value : key for key, value in JOB_CATEGORIES}
+
+print(categories_dict)
+
+
 
 class JobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Post
@@ -264,7 +285,13 @@ class JobListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         queryset = super().get_queryset()
         category = self.request.GET.get('category')  # Récupérer la catégorie sélectionnée
         if category:
-            queryset = queryset.filter(job_category=category)
+            print(category)
+            # Utiliser la clé pour récupérer la valeur correspondante dans categories_dict
+            category_value = categories_dict.get(category)
+            if category_value:
+                print(category_value)
+                queryset = queryset.filter(job_category=category)
+                print(queryset)
         return queryset
 
 def job_categories(request):
