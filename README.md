@@ -31,5 +31,5 @@ For this section, two approaches are proposed:
    - **Encoding:** A predefined set of skills (and education) is defined to convert CV data into a fixed-size vector. Each value in the vector is associated with a specific skill (or education). This value is set to 1 if the CV contains that skill and 0 otherwise. The same operation is performed for the job description published by the recruiter.
    - **Classification:** The correlation coefficient between the job description and each CV is calculated. This score is used to classify candidates, selecting those whose score is above average.
 2. **Dynamic Approach:**
-   - Decision trees or support vector machines (SVM) are used.
+   - An ANN(artificial neural network) was trained.
    - **Comparison of Results and Conclusion:** The results are then compared, and a conclusion is drawn.
